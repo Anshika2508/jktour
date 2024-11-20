@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Website - Sign In</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="css/signup-style.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="form-title">Sign into Tourism Portal</h2>
+    <form id="login-form">
+        <div class="form-group">
+            <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+    <p class="form-options">Don't have an account? <a href="signup.html" class="link">Sign Up here</a></p>
+</div>
+
+<!-- Toaster Notification -->
+<div id="toaster" class="toaster"></div>
+
+<!-- Audio Element for Click Sound -->
+<audio id="click-sound" src="images/click.mp3"></audio>
+
+<script>
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const clickSound = document.getElementById('click-sound');
+    clickSound.play();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Retrieve stored user data from localStorage
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+
+    if (storedUserData && storedUserData.email === email && storedUserData.password === password) {
+        showToast('Sign In Successful!');
+        // Track the logged-in user
+        localStorage.setItem('loggedInUser', email);
+
+        // Redirect after a brief delay
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1500);
+    } else {
+        showToast('Invalid email or password. Please try again.', 'error');
+    }
+});
+
+// Function to show a toast message
+function showToast(message, type = 'success') {
+    const toaster = document.getElementById('toaster');
+    toaster.textContent = message;
+    toaster.className = `toaster show ${type}`;
+    setTimeout(() => {
+        toaster.className = 'toaster'; // Hide toast after 3 seconds
+    }, 3000);
+}
+</script>
+
+<style>
+/* Toaster Styling */
+.toaster {
+    visibility: hidden;
+    min-width: 250px;
+    margin: 0 auto;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+.toaster.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.toaster.error {
+    background-color: #e74c3c;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,301 @@
+/* Basic resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #f488bc, #fda9f5);
+    color: #333;
+    line-height: 1.6;
+    padding: 0 20px;
+  }
+  
+  /* Header */
+  .district-header {
+    background: url('kathua-background.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 100px 0;
+    /*text-align: center;*/
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Overlay to enhance text visibility on the image */
+  .district-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+    z-index: -1;
+  }
+  
+  .district-header h1 {
+    font-size: 3em;
+  }
+  
+  .district-header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: white;
+  }
+  
+  /* Overview */
+  .district-overview {
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .district-overview h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #914b8e;
+  }
+  
+  /* Attractions */
+  .district-attractions {
+    margin: 20px 0;
+  }
+  
+  .attractions-gallery {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .attraction {
+    text-align: center;
+    width: 45%;
+  }
+  
+  .attraction img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .attraction h3 {
+    margin-top: 10px;
+  }
+  
+  /* Travel Info */
+  .district-travel-info ul {
+    list-style-type: none;
+    padding: 10px;
+  }
+  
+  #map-container {
+    margin-top: 20px;
+  }
+  
+  /* Accommodation */
+  .accommodation-gallery {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .hotel {
+    width: 45%;
+    text-align: center;
+  }
+  
+  .hotel img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Footer */
+  footer {
+    background: #e64a19;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .district-overview, .district-travel-info, .district-events {
+    background: #fefefed3; /* Light background for readability */
+    padding: 50px 0;
+  }
+  
+  .district-attractions, .district-accommodation, .district-weather {
+    background: linear-gradient(to right, #f18fd9, #e8bae0);
+    padding: 50px 0;
+  }
+  
+  /* Card Styles */
+  .card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Button Styles */
+  .btn-primary {
+    background-color: #3e82fc;
+    border-color: #3e82fc;
+  }
+  
+  .btn-primary:hover {
+    background-color: #295bba;
+    border-color: #295bba;
+  }
+  
+  /* Text Colors */
+  h2, h3, p {
+    color: #333;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #34495e;
+    color: #ffffff;
+  }
+  /* Navbar background and text colors */
+.navbar {
+  background-color: #7de0e7; /* Blue background */
+}
+
+.navbar-brand, .nav-link {
+  color: rgb(15, 16, 16) !important; /* White text */
+  
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Lighten on hover */
+  border-radius: 5px; /* Rounded edges on hover */
+}
+
+/* Login and Signup buttons specific styling */
+.nav-link {
+  margin-left: 15px;
+  padding: 8px 15px;
+  font-weight: bold;
+}
+/* Travel Information Section Styling */
+
+.hotel-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+.hotel-option {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  position: relative;
+}
+.hotel-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.book-now-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+.book-now-btn:hover {
+  background-color: #0056b3;
+}
+/* Wishlist Button Styles */
+.wishlist-btn {
+  font-size: 24px;
+  cursor: pointer;
+  color: black; /* Black bordered heart by default */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: color 0.3s ease;
+}
+
+.wishlist-btn:hover {
+  color: red; /* Red on hover */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background-color: #fff;
+  border: 1px solid #888;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  text-align: center;
+}
+.close {
+  font-size: 28px;
+  color: #aaa;
+  float: right;
+  cursor: pointer;
+}
+.district-events h2 {
+  
+  color: #753773;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(47, 127, 167, 0.382);
+}
+.event-card .card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+.event-card .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+.event-image {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  object-fit: cover;
+  height: 200px;
+}
+.event-description {
+  font-size: 1rem;
+  color: #555;
+  
+}
+
+.card-body {
+  background: linear-gradient(to right, #e542b4, #efabdf);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.weather-card {
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+}

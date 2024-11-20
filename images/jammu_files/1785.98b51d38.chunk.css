@@ -1,0 +1,172 @@
+.motion-badge {
+  z-index: 9;
+}
+
+.motion-video {
+  z-index: 1;
+  width: 100%;
+}
+
+.photo-view-titlebar {
+  background-color: rgb(var(--palette-neutral-4));
+  z-index: 2;
+}
+
+.photo-view-titlebar-section {
+  flex-basis: 33.333%;
+}
+
+.cropped-face {
+  background-color: transparent;
+  border: 1px solid white;
+  position: absolute;
+}
+
+.photo-view-face-container {
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+
+/**
+ * Styles for the content section of the view.
+ */
+.photo-view-content {
+  background-color: rgb(var(--palette-neutral-0));
+  outline: none;
+  user-select: none;
+}
+
+.photo-view-photo .photo {
+  background-position: center center;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.photo-view-photo .video-state-transition {
+  background-color: rgba(0, 0, 0, 0.74);
+}
+
+.photo-view-photo .video-state-transition.fade-out {
+  opacity: 0;
+  transition: opacity 750ms ease 0ms;
+}
+
+.photo-view-photo .video-state-transition .svg-icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.zoom-container {
+  transform-origin: 0 0;
+}
+
+.bolt-button.photo-view-button.subtle {
+  background-color: rgba(0, 0, 0, 0.54);
+  color: white;
+}
+
+.bolt-button.photo-view-button.subtle:hover,
+.bolt-button.photo-view-button.subtle:focus {
+  background-color: rgba(0, 0, 0, 0.74);
+}
+
+.photo-view-scroll .bolt-button.subtle {
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 200ms ease-out 0ms;
+}
+
+.bolt-focus-visible .photo-view-scroll-overlay:focus-within .photo-view-button.subtle,
+.photo-view-scroll-overlay.show-controls .photo-view-button.subtle,
+.photo-view-scroll:hover .photo-view-button.subtle {
+  opacity: 1;
+  transition: opacity 200ms ease-out 0ms;
+}
+
+.photo-view-command-overlay {
+  z-index: 2;
+}
+
+.photo-view-scroll-overlay {
+  z-index: 1;
+}
+
+.photo-view-scroll-overlay .photo-group-count {
+  background-color: rgba(0, 0, 0, 0.74);
+  color: rgb(255, 255, 255);
+  opacity: 0;
+  padding-bottom: 0.375rem;
+  padding-top: 0.3125rem;
+  transition: opacity 750ms ease-out 0ms;
+}
+
+.photo-view-scroll-overlay .photo-group-count.visible {
+  opacity: 1;
+}
+
+.photo-container:hover .hover-badge-text,
+.photo-container:focus-within .hover-badge-text {
+  max-width: 300px;
+  padding: 0px 4px;
+}
+
+/**
+ * Styles for the photo strip
+ */
+.photo-view-strip {
+  background-color: rgb(var(--palette-neutral-4));
+  overflow: overlay;
+  padding: 1.25rem 0.5rem;
+  user-select: none;
+  z-index: 1;
+}
+
+.photo-view-thumbnail {
+  border-radius: 0.375rem;
+  border-width: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+/**
+ * Overlay styles modified selected style to be same width as unselected.
+ */
+.photo-view-thumbnail.tile-overlay-container.selected .tile-overlay {
+  border-radius: 0.375rem;
+  border-width: 0.25rem;
+  padding: 0.125rem;
+}
+
+.photo-view-thumbnail.tile-overlay-container.selected .tile-overlay-border {
+  border-width: 0.125rem;
+}
+
+/**
+ * Styles to control the details panel within the photo view.
+ */
+.photo-view-details {
+  background-color: rgb(var(--palette-neutral-4));
+  width: 380px;
+}
+
+.photo-edit-dialog .bolt-callout-content {
+  margin: 0;
+}
+
+.photo-edit-dialog div[role="banner"] .ms-Stack {
+  border-bottom: none;
+  height: 58px;
+  position: relative;
+  z-index: 1;
+}
+
+.photo-edit-dialog div[role="banner"] .ms-StackItem:first-child,
+.photo-edit-dialog div[role="banner"] .ms-StackItem:last-child {
+  flex-basis: 50%;
+  flex-shrink: 1;
+}
+
+
+/*# sourceMappingURL=1785.98b51d38.chunk.css.map*/

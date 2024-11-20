@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Website - Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="css/signup-style.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="form-title">Create an Account</h2>
+    <form id="signup-form">
+        <div class="form-group">
+            <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" required>
+        </div>
+        <button type="submit" class="btn btn-success">Sign Up</button>
+    </form>
+    <p class="form-options">Already have an account? <a href="signin.html" class="link">Sign In here</a></p>
+</div>
+
+<!-- Toaster Notification -->
+<div id="toaster" class="toaster"></div>
+
+<!-- Audio Element for Click Sound -->
+<audio id="click-sound" src="images/click.mp3"></audio>
+
+<script>
+document.getElementById('signup-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const clickSound = document.getElementById('click-sound');
+    clickSound.play();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    if (password !== confirmPassword) {
+        showToast('Passwords do not match. Please try again.', 'error');
+        return;
+    }
+
+    // Create user data object
+    const userData = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    // Store user data in localStorage as a string
+    localStorage.setItem('userData', JSON.stringify(userData));
+    showToast('Sign Up Successful! Redirecting to Sign In...');
+
+    // Redirect to sign-in page after a delay
+    setTimeout(() => {
+        window.location.href = 'signin.html';
+    }, 2000);
+});
+
+// Function to show a toast message
+function showToast(message, type = 'success') {
+    const toaster = document.getElementById('toaster');
+    toaster.textContent = message;
+    toaster.className = `toaster show ${type}`;
+    setTimeout(() => {
+        toaster.className = 'toaster'; // Hide toast after 3 seconds
+    }, 3000);
+}
+</script>
+
+<style>
+/* Toaster Styling */
+.toaster {
+    visibility: hidden;
+    min-width: 250px;
+    margin: 0 auto;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+.toaster.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.toaster.error {
+    background-color: #e74c3c;
+}
+</style>
+</body>
+</html>

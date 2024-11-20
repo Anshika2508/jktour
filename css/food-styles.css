@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(45deg, #721e6f, #982a56, #ed6dd3);
+    color: white;
+    height: 100%;
+   
+   
+}
+
+
+.district-header {
+    background: url('art.jpg') no-repeat center center/cover;
+    
+    color: #fff;
+    padding: 100px 0;
+    /*text-align: center;*/
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Overlay to enhance text visibility on the image */
+  .district-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+    z-index: -1;
+  }
+  
+  .district-header h1 {
+    font-size: 3em;
+  }
+  
+  .district-header p {
+    
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: white;
+  }
+
+.content-section {
+   
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 40px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.district-card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    overflow: hidden;
+    width: 30%;
+    margin: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.district-card:hover {
+    transform: translateY(-10px);
+}
+
+.food-img, .culture-img {
+    width: 100%;
+    height: auto;
+    border-bottom: 4px solid #fff;
+}
+
+.district-card h2 {
+    color: #ffcb74;
+    font-size: 1.8rem;
+    margin-top: 10px;
+}
+
+.district-card p {
+    padding: 15px;
+    font-size: 1rem;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    text-align: center;
+    color: #ffcb74;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
