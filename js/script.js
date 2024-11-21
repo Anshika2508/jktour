@@ -33,7 +33,7 @@ if (signOutButton) {
     signOutButton.addEventListener('click', function () {
         // Remove user data from localStorage
         localStorage.removeItem('loggedInUser');
-        localStorage.removeItem('userData');
+       
 
         // Hide user info and show sign-up link
         userInfoElement.style.display = 'none';
