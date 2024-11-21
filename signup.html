@@ -8,7 +8,22 @@
     <link rel="stylesheet" href="css/signup-style.css">
 </head>
 <body>
-
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Explore J&K</h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="about.html" target="_blank">About</a></li>
+                    <li><a href="places.html" target="_blank">Places to Visit</a></li>
+                    <li><a href="contact.html" target="_blank">Contact</a></li>
+                    <li><a href="signup.html" target="_blank">Sign up</a></li>
+                    <li><a href="feedback.html" target="_blank">Feedback</a></li>
+                    <li><a href="food.html" target="_blank">Food and culture</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+<section class="signup-section">
 <div class="form-container">
     <h2 class="form-title">Create an Account</h2>
     <form id="signup-form">
@@ -34,7 +49,30 @@
 
 <!-- Audio Element for Click Sound -->
 <audio id="click-sound" src="images/click.mp3"></audio>
+</section>
+</div>
+<!-- Include Font Awesome CDN -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
+<footer class="footer">
+    <p>Contact us at <a href="mailto:info@explorejk.com">info@explorejk.com</a></p>
+    <p>Follow us on:</p>
+    <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="social-icon" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="social-icon" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+    </div>
+    <p class="credit">© 2024 Explore J&K. All rights reserved.</p>
+</footer>
+
+
+</div>
 <script>
 document.getElementById('signup-form').addEventListener('submit', function(event) {
     event.preventDefault();
