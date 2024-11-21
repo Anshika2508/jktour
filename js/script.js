@@ -12,39 +12,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Check if the user is logged in
 const loggedInUser = localStorage.getItem('loggedInUser');
 const userInfoElement = document.getElementById('user-info');
-const signInButton = document.getElementById('signin-btn');
 const signUpLink = document.getElementById('signup-link');
 const userNameElement = document.getElementById('username');
-const profileIcon = document.getElementById('profile-icon');
 const signOutButton = document.getElementById('sign-out-btn');
 
-// If the user is logged in, show the username, profile icon, and sign-out button
+// If the user is logged in
 if (loggedInUser) {
     const storedUserData = JSON.parse(localStorage.getItem('userData'));
     if (storedUserData && storedUserData.name) {
         userNameElement.textContent = storedUserData.name; // Show the user's name
     }
 
-    // Show user info, hide sign-in button, and show sign-out button
+    // Display user info and hide the sign-up link
     userInfoElement.style.display = 'block';
-    signInButton.style.display = 'none';
-    signUpLink.style.display = 'none'; // Hide sign-up link if logged in
+    if (signUpLink) signUpLink.style.display = 'none';
 }
 
 // Sign out functionality
-signOutButton.addEventListener('click', function() {
-    // Remove user data from localStorage
-    localStorage.removeItem('loggedInUser');
-    localStorage.removeItem('userData');
+if (signOutButton) {
+    signOutButton.addEventListener('click', function () {
+        // Remove user data from localStorage
+        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('userData');
 
-    // Hide user info and show sign-in button again
-    userInfoElement.style.display = 'none';
-    signInButton.style.display = 'block';
-    signUpLink.style.display = 'inline-block'; // Show sign-up link again
+        // Hide user info and show sign-up link
+        userInfoElement.style.display = 'none';
+        if (signUpLink) signUpLink.style.display = 'inline-block';
 
-    // Optionally, you can redirect to the home page or reload the page
-    window.location.reload(); // Or window.location.href = 'index.html';
-});
+        // Optionally, redirect or reload the page
+        window.location.reload();
+    });
+}
 
 
 let currentIndex = 0;
