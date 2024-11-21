@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="css/feedback-style.css">
 </head>
 <body>
-
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Explore J&K</h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="places.html">Places to Visit</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 <div class="container mt-5">
     <h2>Feedback Form</h2>
     <form id="feedback-form">
@@ -33,12 +44,17 @@
     <!-- Audio Element for Click Sound -->
     <audio id="click-sound" src="images/click.mp3"></audio>
 </div>
+<footer class="footer">
+    <div class="container">
+        <p>© 2024 Explore J&K. All Rights Reserved.</p>
+    </div>
+</footer>
 
 <!-- Include EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
     // Initialize EmailJS
-    emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key
+    emailjs.init('zZmQ1x19Gm4eWcWI2'); // Replace with your EmailJS public key
 
     document.getElementById('feedback-form').addEventListener('submit', function(event) {
         event.preventDefault();
@@ -53,7 +69,7 @@
         const message = document.getElementById('message').value;
 
         // Send feedback using EmailJS
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+        emailjs.send('service_mlzk1z9', 'template_btnrlzf', {
             name: name,
             email: email,
             message: message
