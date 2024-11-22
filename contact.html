@@ -168,6 +168,8 @@
             <p>If you have any questions or need more information, please feel free to reach out to us:</p>
             
             <!-- Contact Form -->
+             <div id="form-section">
+            <img src="images/contact.png" id="contact-image" alt="Contact Us" class="contact-image">   
             <form id="contact-form" class="contact-form">
                 <div class="form-group">
                     <input type="text" id="user-name" class="form-control" placeholder="Your Name" required>
@@ -176,10 +178,14 @@
                     <input type="email" id="user-email" class="form-control" placeholder="Your Email" required>
                 </div>
                 <div class="form-group">
+                    <input type="tel" id="user-phone" class="form-control" placeholder="Your Phone Number" pattern="[0-9]{10}" required>
+                </div>
+                <div class="form-group">
                     <textarea id="user-message" class="form-control" placeholder="Your Message" required></textarea>
                 </div>
                 <button type="submit" class="btn-primary">Send Message</button>
             </form>
+            </div>
 
             <!-- Contact Details Card -->
             <div class="contact-card">
@@ -206,7 +212,7 @@
     <script>
         // Initialize EmailJS with your user ID
         (function () {
-            emailjs.init('YOUR_USER_ID'); // Replace 'YOUR_USER_ID' with your actual EmailJS user ID
+            emailjs.init('zZmQ1x19Gm4eWcWI2'); // Replace 'YOUR_USER_ID' with your actual EmailJS user ID
         })();
 
         // Handle the form submission
@@ -216,12 +222,14 @@
             const userName = document.getElementById('user-name').value;
             const userEmail = document.getElementById('user-email').value;
             const userMessage = document.getElementById('user-message').value;
+            const userPhone = document.getElementById('user-phone').value;
 
             // Send the email using EmailJS
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+            emailjs.send('service_mlzk1z9', 'template_4o7nuvb', {
                 from_name: userName,
                 from_email: userEmail,
-                message: userMessage
+                purpose: userMessage,
+                tel: userPhone
             })
             .then(function (response) {
                 console.log('Success:', response);

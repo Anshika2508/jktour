@@ -48,7 +48,24 @@ body {
     background: #f0db4f;
     color: #333;
 }
+#form-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 20px; /* Adds space between image and form */
+}
 
+.contact-image {
+    width: 40%; /* Adjust the percentage based on preference */
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 /* Contact Section */
 .contact {
     margin: 50px 0;
@@ -56,30 +73,117 @@ body {
     text-align: center;
 }
 
-/* Contact Form Styling */
 .contact-form {
-    max-width: 600px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #e8f0ff, #f4faff);
+    border: 1px solid #d1e7ff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    color: #333;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: #007BFF;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .form-control {
     width: 100%;
     padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #fff;
+    padding-left: 40px; /* Adjust for icon space */
+    font-size: 0.95rem;
     color: #333;
-    font-size: 16px;
-    transition: border-color 0.3s;
+    background-color: #f9fcff;
+    border: 1px solid #b0d4ff;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
-/* Input and Textarea hover effect */
-.form-control:hover {
-    border-color: #6e8efb;
+.form-control:focus {
+    border-color: #007BFF;
+    background-color: #e6f2ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+}
+
+textarea.form-control {
+    resize: none;
+    height: 100px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+/* Add SVG icons inside the inputs */
+.form-group::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Name Field Icon */
+#user-name + .form-group::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23007BFF' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.314 0-10 1.664-10 5v3h20v-3c0-3.336-6.686-5-10-5z'/%3E%3C/svg%3E");
+}
+
+/* Email Field Icon */
+#user-email + .form-group::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23007BFF' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 1.99 2H20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+}
+
+/* Phone Field Icon */
+#user-phone + .form-group::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23007BFF' viewBox='0 0 24 24'%3E%3Cpath d='M6.62 10.79c2.05 4.32 5.57 7.84 9.88 9.88l2.2-2.2c.27-.27.67-.36 1.02-.26 1.12.34 2.33.52 3.57.52.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1 0 1.24.18 2.45.52 3.57.1.35.01.74-.26 1.02l-2.2 2.2c-.33.33-.33.87 0 1.2l2.46 2.46c.33.33.87.33 1.2 0z'/%3E%3C/svg%3E");
+}
+
+/* Message Field Icon */
+#user-message + .form-group::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23007BFF' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 12H4V6h16v10z'/%3E%3C/svg%3E");
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 15px;
+    }
+
+    .btn-primary {
+        font-size: 0.9rem;
+    }
 }
 
 /* Submit Button */
@@ -110,15 +214,53 @@ body {
     transition: transform 0.3s;
 }
 
-/* Card Hover Effect */
-.contact-card:hover {
-    transform: scale(1.02); /* Slight zoom-in effect */
+.contact-card {
+    width: 100%;
+    background-color: #004080; /* Rich blue background */
+    color: #ffffff; /* White text for contrast */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center; /* Centers text content */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow effect at the top */
+    border-top: 5px solid #007BFF; /* Light blue border accent */
 }
 
-/* Contact Card Header */
 .contact-card h3 {
-    color: #6e8efb; /* Blue for the header */
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #db4e1e; /* Yellow accent for the heading */
 }
+
+.contact-card p {
+    font-size: 1rem;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.contact-card a {
+    color: #e6390e; /* Yellow accent for links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+    color: #e85612; /* Slightly brighter yellow on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-card {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    .contact-card h3 {
+        font-size: 1.5rem;
+    }
+}
+
 
 /* Social Media Icons */
 .social-icons a {
@@ -131,7 +273,7 @@ body {
 /* Social Icons Hover Effect */
 .social-icons a:hover {
     transform: scale(1.2); /* Icon enlarges on hover */
-    color: #f0db4f; /* Change color to yellow on hover */
+    color: #e93c0c; /* Change color to yellow on hover */
 }
 
 /* Footer Styles */
