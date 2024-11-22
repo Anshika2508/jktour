@@ -73,11 +73,16 @@
 
     <!-- Toast notification element -->
     <div id="toaster" class="toaster"></div>
+    <!-- Audio Element for Click Sound -->
+<audio id="click-sound" src="images/click.mp3"></audio>
 
     <script>
         const loginForm = document.getElementById('login-form');
         const userNameElement = document.getElementById('user-name');
         const logoutButton = document.getElementById('logout-button');
+        const clickSound = document.getElementById('click-sound');
+   
+
 
         // Check if the user is already logged in
         const loggedInUser = localStorage.getItem('loggedInUser');
@@ -103,7 +108,9 @@
 
             if (storedUserData && storedUserData.email === email && storedUserData.password === password) {
                 localStorage.setItem('loggedInUser', email);
+                clickSound.play();
                 showToast('Sign In Successful!');
+
                 
                 setTimeout(() => {
                     window.location.reload();
@@ -117,7 +124,7 @@
         logoutButton.addEventListener('click', function() {
             localStorage.removeItem('loggedInUser');
             
-
+            clickSound.play();
             showToast('You have been logged out.', 'success');
 
             document.querySelector('.user-info').style.display = 'none';
@@ -150,7 +157,7 @@
             visibility: hidden;
             min-width: 250px;
             margin: 0 auto;
-            background-color: #333;
+            background-color: #01889a;
             color: #fff;
             text-align: center;
             border-radius: 5px;
