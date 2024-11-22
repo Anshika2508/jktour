@@ -1,4 +1,3 @@
-<!-- contact.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
+    <meta name="description" content="Contact Explore J&K for your queries about visiting Jammu & Kashmir. We're here to help!">
+    <meta name="keywords" content="Explore J&K, contact, tourism, Jammu and Kashmir">
     <link rel="stylesheet" href="css/form.css">
     <!-- Include font awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -16,7 +17,7 @@
             background: linear-gradient(135deg, #6e8efb, #a777e3);
             color: white;
         }
-        
+
         .header {
             background: rgba(0, 0, 0, 0.6);
             color: #fff;
@@ -24,26 +25,26 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             border-bottom: 2px solid #ffffff33;
         }
-        
+
         .header .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .header .logo {
             font-size: 28px;
             font-weight: 600;
             color: #f0db4f;
         }
-        
+
         .nav ul {
             list-style: none;
             display: flex;
             gap: 20px;
         }
-        
+
         .nav a {
             color: #f0db4f;
             text-decoration: none;
@@ -51,7 +52,7 @@
             border-radius: 5px;
             transition: background 0.3s, color 0.3s;
         }
-        
+
         .nav a:hover {
             background: #f0db4f;
             color: #333;
@@ -134,17 +135,24 @@
             font-size: 16px;
             z-index: 1000;
             opacity: 1;
-            transition: opacity 0.5s;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        /* Green toaster for success */
         .toaster.green {
-            background-color: green;
+            background-color: #28a745;
         }
 
-        /* Red toaster for error */
         .toaster.red {
-            background-color: red;
+            background-color: #dc3545;
+        }
+
+        /* Spinner */
+        #loading-spinner {
+            display: none;
+            font-size: 16px;
+            color: rgb(48, 15, 234);
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -168,23 +176,28 @@
             <p>If you have any questions or need more information, please feel free to reach out to us:</p>
             
             <!-- Contact Form -->
-             <div id="form-section">
-            <img src="images/contact.png" id="contact-image" alt="Contact Us" class="contact-image">   
-            <form id="contact-form" class="contact-form">
-                <div class="form-group">
-                    <input type="text" id="user-name" class="form-control" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="user-email" class="form-control" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" id="user-phone" class="form-control" placeholder="Your Phone Number" pattern="[0-9]{10}" required>
-                </div>
-                <div class="form-group">
-                    <textarea id="user-message" class="form-control" placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Send Message</button>
-            </form>
+            <div id="form-section">
+                <img src="images/contact.png" id="contact-image" alt="Contact Us Illustration" class="contact-image">   
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        
+                        <input type="text" id="user-name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                       
+                        <input type="email" id="user-email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        
+                        <input type="tel" id="user-phone" class="form-control" placeholder="Your Phone Number" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group">
+                        
+                        <textarea id="user-message" class="form-control" placeholder="Your Purpose" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                    <div id="loading-spinner">Sending...</div>
+                </form>
             </div>
 
             <!-- Contact Details Card -->
@@ -205,65 +218,6 @@
         </div>
     </section>
 
-  
-    <!-- Include EmailJS Script -->
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
-    <script>
-        // Initialize EmailJS with your user ID
-        (function () {
-            emailjs.init('zZmQ1x19Gm4eWcWI2'); // Replace 'YOUR_USER_ID' with your actual EmailJS user ID
-        })();
-
-        // Handle the form submission
-        document.getElementById('contact-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const userName = document.getElementById('user-name').value;
-            const userEmail = document.getElementById('user-email').value;
-            const userMessage = document.getElementById('user-message').value;
-            const userPhone = document.getElementById('user-phone').value;
-
-            // Send the email using EmailJS
-            emailjs.send('service_mlzk1z9', 'template_4o7nuvb', {
-                from_name: userName,
-                from_email: userEmail,
-                purpose: userMessage,
-                tel: userPhone
-            })
-            .then(function (response) {
-                console.log('Success:', response);
-                // Show success toaster
-                showToaster('Message sent successfully!', 'green');
-                document.getElementById('contact-form').reset(); // Reset the form
-            })
-            .catch(function (error) {
-                console.error('Error:', error);
-                // Show error toaster
-                showToaster('Failed to send message. Please try again later.', 'red');
-            });
-        });
-
-        // Show toaster message
-        function showToaster(message, color) {
-            const toaster = document.createElement('div');
-            toaster.className = 'toaster ' + color;
-            toaster.innerText = message;
-            document.body.appendChild(toaster);
-
-            // Fade out toaster after 3 seconds
-            setTimeout(function () {
-                toaster.style.opacity = '0';
-                setTimeout(function () {
-                    toaster.remove();
-                }, 500);
-            }, 3000);
-        }
-    </script>
-</body>
-</html>
-
-
     <footer class="footer">
         <div class="container">
             <p>© 2024 Explore J&K. All Rights Reserved.</p>
@@ -272,11 +226,10 @@
 
     <!-- Include EmailJS Script -->
     <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
     <script>
         // Initialize EmailJS with your user ID
         (function () {
-            emailjs.init('zZmQ1x19Gm4eWcWI2'); // Replace 'YOUR_USER_ID' with your actual EmailJS user ID
+            emailjs.init('zZmQ1x19Gm4eWcWI2');
         })();
 
         // Handle the form submission
@@ -285,41 +238,43 @@
 
             const userName = document.getElementById('user-name').value;
             const userEmail = document.getElementById('user-email').value;
+            const userPhone = document.getElementById('user-phone').value;
             const userMessage = document.getElementById('user-message').value;
 
+            // Show spinner
+            document.getElementById('loading-spinner').style.display = 'block';
+
             // Send the email using EmailJS
-            emailjs.send('service_mlzk1z9', 'template_btnrlzf', {
+            emailjs.send('service_mlzk1z9', 'template_4o7nuvb', {
                 from_name: userName,
                 from_email: userEmail,
-                message: userMessage
-            })
-            .then(function (response) {
-                console.log('Success:', response);
-                // Show success toaster
+                purpose: userMessage,
+                tel: userPhone
+            }).then(function (response) {
+                document.getElementById('loading-spinner').style.display = 'none';
                 showToaster('Message sent successfully!', 'green');
-                document.getElementById('contact-form').reset(); // Reset the form
-            })
-            .catch(function (error) {
-                console.error('Error:', error);
-                // Show error toaster
-                showToaster('Failed to send message. Please try again later.', 'red');
+                document.getElementById('contact-form').reset();
+            }).catch(function (error) {
+                document.getElementById('loading-spinner').style.display = 'none';
+                showToaster('Failed to send message.', 'red');
             });
         });
 
-        // Show toaster message
-        function showToaster(message, color) {
+        // Function to show toaster notification
+        function showToaster(message, type) {
             const toaster = document.createElement('div');
-            toaster.className = 'toaster ' + color;
+            toaster.classList.add('toaster', type);
             toaster.innerText = message;
             document.body.appendChild(toaster);
 
-            // Fade out toaster after 3 seconds
-            setTimeout(function () {
+            setTimeout(() => {
                 toaster.style.opacity = '0';
-                setTimeout(function () {
-                    toaster.remove();
-                }, 500);
+                toaster.style.transform = 'translateY(-30px)';
             }, 3000);
+
+            setTimeout(() => {
+                document.body.removeChild(toaster);
+            }, 4000);
         }
     </script>
 </body>
