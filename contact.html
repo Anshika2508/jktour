@@ -246,8 +246,8 @@
 
             // Send the email using EmailJS
             emailjs.send('service_mlzk1z9', 'template_4o7nuvb', {
-                from_name: userName,
-                from_email: userEmail,
+                name: userName,
+                email: userEmail,
                 purpose: userMessage,
                 tel: userPhone
             }).then(function (response) {
