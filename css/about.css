@@ -7,11 +7,11 @@
 
 /* Body Styling */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Updated font */
     line-height: 1.6;
-    background-color: #1a2b3c; /* Deep blue background */
-    color: #ddd; /* Light text color for contrast */
-    padding-top: 80px; /* Adjusted for fixed navbar */
+    background-color: #1a2b3c;
+    color: #ddd;
+    padding-top: 80px;
 }
 
 /* Header */
@@ -20,9 +20,10 @@ header {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: #0f1a2b; /* Darker deep blue */
-    padding: 10px 20px;
+    background-color: #0f1a2b;
+    padding: 30px 20px;
     z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for navbar */
 }
 
 header nav {
@@ -51,27 +52,29 @@ header .nav-links a {
     text-decoration: none;
     font-size: 18px;
     padding: 8px 15px;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
 }
 
 header .nav-links a:hover {
-    background-color: #1b2b3d; /* Slightly lighter blue for hover effect */
+    background-color: #1b2b3d;
     border-radius: 4px;
 }
 
 /* Hero Section */
 .hero {
-    background-image: url('srinagar-background.jpg'); /* Add your own background image */
+    background-image: url('srinagar-background.jpg');
     background-size: cover;
     background-position: center;
     color: #fff;
     text-align: center;
     padding: 80px 20px;
     height: 400px;
+    margin-top: 25px;
 }
 
 .hero-text h1 {
     font-size: 50px;
-    font-weight: bold;
+    font-weight: 700; /* Bolder font weight for headings */
     margin-bottom: 20px;
 }
 
@@ -85,7 +88,7 @@ header .nav-links a:hover {
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #2c3e50; /* Dark background */
+    background-color: #2c3e50;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
@@ -93,8 +96,9 @@ header .nav-links a:hover {
 .about-jk h2,
 .about-jk h3 {
     font-size: 30px;
-    color: #fff; /* White text for titles */
+    color: #fff;
     margin-bottom: 20px;
+    font-weight: 600; /* Slightly heavier font weight */
 }
 
 .about-jk p {
@@ -105,34 +109,141 @@ header .nav-links a:hover {
 
 /* Our Product Section */
 .our-product {
-    background-color: #34495e; /* Darker background for product section */
+    background-color: #1a2b3c; /* Dark background color */
+    color: #fff; /* Light text color for readability */
     padding: 40px 20px;
-    margin-top: 40px;
+    text-align: center;
 }
 
 .our-product h2 {
-    font-size: 30px;
-    color: #fff;
+    font-size: 2.5rem;
+    color: #fa6b4d; /* Bright accent color for headings */
     margin-bottom: 20px;
 }
 
-.our-product ul {
-    list-style: none;
+.our-product p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: #ddd; /* Light gray text for better readability on dark background */
 }
 
-.our-product li {
-    font-size: 18px;
+.our-product h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.offer-list {
+    list-style-type: none;
+    padding: 20px;
+    margin: 0 0 40px;
+    background-color: #44444442;
+    
+}
+
+.offer-list li {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    color: #ddd; /* Light gray text for items */
+}
+
+.product-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.step {
+    padding-top: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    width: 80%;
+    align-items: center;
+    background-color: #6ba6ea15;
+}
+
+.step-number {
+    background-color: #fa6b4d; /* Bright color for step number */
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: -50px;
+}
+
+.step-content {
+    margin-left: 60px;
+    max-width: 700px;
+    text-align: left;
+}
+
+.step-content h4 {
+    font-size: 1.4rem;
+    color: #fff; /* White text for headings */
     margin-bottom: 10px;
 }
+
+.step-content p {
+    font-size: 1rem;
+    color: #bbb; /* Lighter gray text for descriptions */
+}
+
+.step:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background-color: #444; /* Dark line color for separation */
+    z-index: -1;
+}
+
+.step:last-child:before {
+    display: none;
+}
+
+/* Add responsiveness */
+@media (max-width: 768px) {
+    .product-steps {
+        width: 100%;
+    }
+    .step {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .step-number {
+        left: 0;
+        margin-bottom: 15px;
+    }
+}
+
 
 /* Why Visit Section */
 .why-visit {
     padding: 40px 20px;
-    background-color: #2c3e50; /* Darker background */
+    background-color: #2c3e50;
 }
 
-.why-visit h2 {
+.why-visit  h2 {
     font-size: 30px;
+    color: #fff;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+.why-visit  p {
+    
     color: #fff;
     margin-bottom: 20px;
     text-align: center;
@@ -147,10 +258,15 @@ header .nav-links a:hover {
 
 .reason {
     flex: 1 1 48%;
-    background-color: #34495e; /* Darker card background */
+    background-color: #f3dbda21;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.reason:hover {
+    transform: translateY(-5px); /* Slight hover effect */
 }
 
 .reason h3 {
@@ -167,7 +283,7 @@ header .nav-links a:hover {
 /* Testimonials Section */
 .testimonials {
     padding: 40px 20px;
-    background-color: #1a2b3c; /* Dark background */
+    background-color: #1a2b3c;
 }
 
 .testimonials h2 {
@@ -178,7 +294,7 @@ header .nav-links a:hover {
 }
 
 .testimonial {
-    background-color: #2c3e50; /* Darker testimonial card */
+    background-color: #2c3e50;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
@@ -203,7 +319,7 @@ header .nav-links a:hover {
 /* Contact Section */
 .contact-info {
     padding: 40px 20px;
-    background-color: #2c3e50; /* Dark background */
+    background-color: #2c3e50;
     text-align: center;
 }
 
@@ -220,14 +336,19 @@ header .nav-links a:hover {
 }
 
 .contact-info a {
-    color: #2980b9; /* Light blue links */
+    color: #2980b9;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #fff; /* Change to white on hover */
 }
 
 /* Footer */
 footer {
-    background-color: #0f1a2b; /* Deep blue footer background */
+    background-color: #0f1a2b;
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -245,6 +366,7 @@ footer .footer-links a {
     color: #fff;
     text-decoration: none;
     margin: 0 15px;
+    transition: text-decoration 0.3s ease;
 }
 
 footer .footer-links a:hover {

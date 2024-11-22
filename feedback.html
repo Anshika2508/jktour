@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback Form with EmailJS</title>
+    <title>Enhanced Feedback Form</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/feedback-style.css">
 </head>
@@ -20,109 +20,160 @@
             </nav>
         </div>
     </header>
-<div class="container mt-5">
-    <h2>Feedback Form</h2>
-    <form id="feedback-form">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" class="form-control" rows="4" placeholder="Enter your message" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send Feedback</button>
-    </form>
 
-    <!-- Toaster Notification -->
-    <div id="toaster" class="toaster"></div>
+    <div class="container mt-5">
+        <h2>Feedback Form</h2>
+        <form id="feedback-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                <div class="invalid-feedback">Name is required.</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" class="form-control" rows="4" placeholder="Enter your message" required></textarea>
+                <div class="invalid-feedback">Message cannot be empty.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Feedback</button>
+        </form>
 
-    <!-- Audio Element for Click Sound -->
-    <audio id="click-sound" src="images/click.mp3"></audio>
-</div>
-<footer class="footer">
-    <div class="container">
-        <p>© 2024 Explore J&K. All Rights Reserved.</p>
+        <!-- Loading Spinner -->
+        <div id="loading-spinner" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Toaster Notification -->
+        <div id="toaster" class="toaster"></div>
+
+        <!-- Audio Element for Click Sound -->
+        <audio id="click-sound" src="images/click.mp3" muted></audio>
     </div>
-</footer>
 
-<!-- Include EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-    // Initialize EmailJS
-    emailjs.init('zZmQ1x19Gm4eWcWI2'); // Replace with your EmailJS public key
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Explore J&K. All Rights Reserved.</p>
+        </div>
+    </footer>
 
-    document.getElementById('feedback-form').addEventListener('submit', function(event) {
-        event.preventDefault();
+    <!-- Include EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        emailjs.init('zZmQ1x19Gm4eWcWI2'); // Replace with your EmailJS public key
 
-        // Play click sound
-        const clickSound = document.getElementById('click-sound');
-        clickSound.play();
-
-        // Collect form data
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        // Send feedback using EmailJS
-        emailjs.send('service_mlzk1z9', 'template_btnrlzf', {
-            name: name,
-            email: email,
-            message: message
-        })
-        .then(response => {
-            showToast('Feedback sent successfully!');
-            document.getElementById('feedback-form').reset(); // Clear form
-        })
-        .catch(error => {
-            showToast('Failed to send feedback. Please try again.', 'error');
-            console.error('EmailJS Error:', error);
-        });
-    });
-
-    // Function to show a toast message
-    function showToast(message, type = 'success') {
+        const feedbackForm = document.getElementById('feedback-form');
+        const spinner = document.getElementById('loading-spinner');
         const toaster = document.getElementById('toaster');
-        toaster.textContent = message;
-        toaster.className = `toaster show ${type}`;
-        setTimeout(() => {
-            toaster.className = 'toaster'; // Hide toast after 3 seconds
-        }, 3000);
-    }
-</script>
+        const clickSound = document.getElementById('click-sound');
 
-<style>
-/* Toaster Styling */
-.toaster {
-    visibility: hidden;
-    min-width: 250px;
-    margin: 0 auto;
-    background-color: #28a745;
-    color: #fff;
-    text-align: center;
-    border-radius: 15px;
-    padding: 10px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    bottom: 30px;
-    transform: translateX(-50%);
-    transition: visibility 0s, opacity 0.5s ease-in-out;
-}
+        feedbackForm.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-.toaster.show {
-    visibility: visible;
-    opacity: 1;
-}
+            // Validate the form
+            if (!feedbackForm.checkValidity()) {
+                feedbackForm.classList.add('was-validated');
+                return;
+            }
 
-.toaster.error {
-    background-color: #e74c3c;
-}
-</style>
+            // Play click sound
+            clickSound.muted = false;
+            
 
+            // Show loading spinner
+            spinner.style.display = 'block';
+
+            // Collect form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Send feedback using EmailJS
+            emailjs
+                .send('service_mlzk1z9', 'template_btnrlzf', {
+                    name: name,
+                    email: email,
+                    message: message,
+                })
+                .then((response) => {
+                    clickSound.play();
+                    showToast('Feedback sent successfully!');
+                    feedbackForm.reset(); // Clear form
+                })
+                .catch((error) => {
+                    showToast('Failed to send feedback. Please try again.', 'error');
+                    console.error('EmailJS Error:', error);
+                })
+                .finally(() => {
+                    spinner.style.display = 'none'; // Hide loading spinner
+                });
+        });
+
+        // Function to show a toast message
+        function showToast(message, type = 'success') {
+            toaster.textContent = message;
+            toaster.className = `toaster show ${type}`;
+            setTimeout(() => {
+                toaster.className = 'toaster'; // Hide toast after 3 seconds
+            }, 3000);
+        }
+    </script>
+
+    <style>
+        /* General Styles */
+       
+
+  
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top-color: #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Toaster Styling */
+        .toaster {
+            visibility: hidden;
+            min-width: 250px;
+            margin: 0 auto;
+            background-color: #28a745;
+            color: #fff;
+            text-align: center;
+            border-radius: 15px;
+            padding: 10px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            transition: visibility 0s, opacity 0.5s ease-in-out;
+        }
+
+        .toaster.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .toaster.error {
+            background-color: #e74c3c;
+        }
+    </style>
 </body>
 </html>
