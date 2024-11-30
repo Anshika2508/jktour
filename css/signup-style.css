@@ -150,6 +150,7 @@ body {
 }
 /* Full-Width Footer Styling */
 .footer {
+    margin-top: 20px;
     width: 100%;
     background-color: #222; /* Dark background */
     color: #fff; /* White text */
@@ -197,7 +198,7 @@ body {
 
 /* Copyright Text Styling */
 .footer .credit {
-    margin-top: 10px;
+    margin-top: 0px;
     font-size: 12px;
     color: #aaa; /* Dimmed color for copyright text */
 }
@@ -205,7 +206,7 @@ body {
 
 
 #profile-pic {
-    width: 100%; /* Set width to 100% */
+    width: 95%; /* Set width to 100% */
     height: auto; /* Maintain aspect ratio */
     border-radius: 10px; /* Rounded corners */
     border: 2px solid #0e0101; /* Light border */
