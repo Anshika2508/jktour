@@ -6,8 +6,97 @@
     <title>Enhanced Feedback Form</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/feedback-style.css">
+    <style>
+        /* Popup styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 1000;
+            width: 400px;
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            transition: opacity 0.3s ease;
+        }
+        .popup.show {
+            display: block;
+            opacity: 1;
+        }
+        .popup .message {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .popup .btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #ff6b6b; /* Error color */
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .popup .btn:hover {
+            background-color: #e04e4e;
+        }
+        .popup .btn:focus {
+            outline: none;
+        }
+
+        /* SVG Icon Styling */
+        .popup .error-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+            fill: #ff6b6b;
+        }
+
+        /* Dim and blur background effect */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .popup-overlay.show {
+            display: block;
+        }
+
+        /* Blur effect for content */
+        .blurred {
+            filter: blur(5px);
+            pointer-events: none; /* Prevent interaction with blurred content */
+        }
+    </style>
+    
 </head>
 <body>
+   
+    <!-- Overlay for dimming the background -->
+    <div id="popup-overlay" class="popup-overlay"></div>
+
+    <!-- Popup -->
+    <div id="login-popup" class="popup">
+        <!-- SVG Error Icon -->
+        <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2" fill="none"/>
+            <line x1="9" y1="9" x2="15" y2="15" stroke="black" stroke-width="2"/>
+            <line x1="15" y1="9" x2="9" y2="15" stroke="black" stroke-width="2"/>
+        </svg>
+        <p class="message">You are not logged in. Please log in first. If you don't have an account, <a href="signup.html">sign up</a>.</p>
+        <button id="close-popup" class="btn btn-primary">OK</button>
+    </div>
     <header class="header">
         <div class="container">
             <h1 class="logo">Explore J&K</h1>
@@ -175,5 +264,37 @@
             background-color: #e74c3c;
         }
     </style>
+     <!-- Check login status -->
+     <script>
+        // Check if the user is logged in
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        const content = document.querySelector('.main-content1'); // Content to blur
+
+        if (!loggedInUser) {
+            // Apply blur effect on the content and show the popup
+            content.classList.add('blurred');
+            const popup = document.getElementById('login-popup');
+            const overlay = document.getElementById('popup-overlay');
+            popup.classList.add('show');
+            overlay.classList.add('show');
+
+            // Redirect to login page after 3 seconds
+            setTimeout(() => {
+                window.location.href = 'signin.html'; // Redirect to sign-in page
+            }, 6000); // 3 seconds delay
+        }
+
+        // Close the popup and redirect immediately when the button is clicked
+        document.getElementById('close-popup').addEventListener('click', function() {
+            const popup = document.getElementById('login-popup');
+            const overlay = document.getElementById('popup-overlay');
+            popup.classList.remove('show');
+            overlay.classList.remove('show');
+            content.classList.remove('blurred'); // Remove blur effect
+
+            // Redirect to the login page immediately after closing the popup
+            window.location.href = 'signin.html'; // Redirect to sign-in page
+        });
+    </script>
 </body>
 </html>

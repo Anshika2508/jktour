@@ -201,3 +201,18 @@ body {
     font-size: 12px;
     color: #aaa; /* Dimmed color for copyright text */
 }
+
+
+
+#profile-pic {
+    width: 100%; /* Set width to 100% */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners */
+    border: 2px solid #0e0101; /* Light border */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+    background-color: #0e0c01c6; /* Change color of file upload button */
+}
+
+#profile-pic:hover {
+    border-color: #f0db4f; /* Change border color on hover */
+}  
