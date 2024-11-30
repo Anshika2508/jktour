@@ -151,67 +151,99 @@
 
     <!-- Include EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        // Initialize EmailJS
-        emailjs.init('zZmQ1x19Gm4eWcWI2'); // Replace with your EmailJS public key
+    <!-- Include EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    // Initialize EmailJS
+    emailjs.init('zZmQ1x19Gm4eWcWI2');
 
-        const feedbackForm = document.getElementById('feedback-form');
-        const spinner = document.getElementById('loading-spinner');
-        const toaster = document.getElementById('toaster');
-        const clickSound = document.getElementById('click-sound');
-
-        feedbackForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            // Validate the form
-            if (!feedbackForm.checkValidity()) {
-                feedbackForm.classList.add('was-validated');
-                return;
-            }
-
-            // Play click sound
-            clickSound.muted = false;
+    document.addEventListener('DOMContentLoaded', function() {
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        
+        if (!loggedInUser) {
+            const popup = document.getElementById('login-popup');
+            const overlay = document.getElementById('popup-overlay');
             
-
-            // Show loading spinner
-            spinner.style.display = 'block';
-
-            // Collect form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            // Send feedback using EmailJS
-            emailjs
-                .send('service_mlzk1z9', 'template_btnrlzf', {
-                    name: name,
-                    email: email,
-                    message: message,
-                })
-                .then((response) => {
-                    clickSound.play();
-                    showToast('Feedback sent successfully!');
-                    feedbackForm.reset(); // Clear form
-                })
-                .catch((error) => {
-                    showToast('Failed to send feedback. Please try again.', 'error');
-                    console.error('EmailJS Error:', error);
-                })
-                .finally(() => {
-                    spinner.style.display = 'none'; // Hide loading spinner
-                });
-        });
-
-        // Function to show a toast message
-        function showToast(message, type = 'success') {
-            toaster.textContent = message;
-            toaster.className = `toaster show ${type}`;
-            setTimeout(() => {
-                toaster.className = 'toaster'; // Hide toast after 3 seconds
-            }, 3000);
+            popup.classList.add('show');
+            overlay.classList.add('show');
+            
+            document.getElementById('close-popup').addEventListener('click', () => {
+                window.location.href = 'signin.html';
+            });
         }
-    </script>
+    });
 
+    const feedbackForm = document.getElementById('feedback-form');
+    const spinner = document.getElementById('loading-spinner');
+    const toaster = document.getElementById('toaster');
+    const clickSound = document.getElementById('click-sound');
+    clickSound.muted = true;
+
+    feedbackForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+        let isValid = true;
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!emailRegex.test(email.value.trim())) {
+            email.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            email.classList.remove('is-invalid');
+        }
+
+        if (name.value.trim().length < 2) {
+            name.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            name.classList.remove('is-invalid');
+        }
+
+        if (message.value.trim().length < 10) {
+            message.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            message.classList.remove('is-invalid');
+        }
+
+        if (!isValid) return;
+
+        spinner.style.display = 'block';
+        clickSound.muted = false;
+
+        const formData = {
+            name: name.value,
+            email: email.value,
+            message: message.value
+        };
+
+        emailjs.send('service_mlzk1z9', 'template_btnrlzf', formData)
+            .then(() => {
+                clickSound.play();
+                showToast('Feedback sent successfully!');
+                feedbackForm.reset();
+            })
+            .catch((error) => {
+                showToast('Failed to send feedback. Please try again.', 'error');
+                console.error('EmailJS Error:', error);
+            })
+            .finally(() => {
+                spinner.style.display = 'none';
+            });
+    });
+
+    function showToast(message, type = 'success') {
+        toaster.textContent = message;
+        toaster.className = `toaster show ${type}`;
+        setTimeout(() => {
+            toaster.className = 'toaster';
+        }, 3000);
+    }
+</script>
     <style>
         /* General Styles */
        
@@ -264,37 +296,6 @@
             background-color: #e74c3c;
         }
     </style>
-     <!-- Check login status -->
-     <script>
-        // Check if the user is logged in
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        const content = document.querySelector('.main-content1'); // Content to blur
-
-        if (!loggedInUser) {
-            // Apply blur effect on the content and show the popup
-            content.classList.add('blurred');
-            const popup = document.getElementById('login-popup');
-            const overlay = document.getElementById('popup-overlay');
-            popup.classList.add('show');
-            overlay.classList.add('show');
-
-            // Redirect to login page after 3 seconds
-            setTimeout(() => {
-                window.location.href = 'signin.html'; // Redirect to sign-in page
-            }, 6000); // 3 seconds delay
-        }
-
-        // Close the popup and redirect immediately when the button is clicked
-        document.getElementById('close-popup').addEventListener('click', function() {
-            const popup = document.getElementById('login-popup');
-            const overlay = document.getElementById('popup-overlay');
-            popup.classList.remove('show');
-            overlay.classList.remove('show');
-            content.classList.remove('blurred'); // Remove blur effect
-
-            // Redirect to the login page immediately after closing the popup
-            window.location.href = 'signin.html'; // Redirect to sign-in page
-        });
-    </script>
+   
 </body>
 </html>
