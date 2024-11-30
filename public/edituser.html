@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+         /* Popup styling */
+         .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 1000;
+            width: 400px;
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            transition: opacity 0.3s ease;
+        }
+        .popup.show {
+            display: block;
+            opacity: 1;
+        }
+        .popup .message {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .popup .btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #ff6b6b; /* Error color */
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .popup .btn:hover {
+            background-color: #e04e4e;
+        }
+        .popup .btn:focus {
+            outline: none;
+        }
+
+        /* SVG Icon Styling */
+        .popup .error-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+            fill: #ff6b6b;
+        }
+
+        /* Dim and blur background effect */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .popup-overlay.show {
+            display: block;
+        }
+
+        /* Blur effect for content */
+        .blurred {
+            filter: blur(5px);
+            pointer-events: none; /* Prevent interaction with blurred content */
+        }
+        body {
+            background-color: #c6d0d8;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    
+        .header {
+            padding: 20px 0;
+            background-color: #1a2b3c;
+            color: #fff;
+        }
+    
+        .logo {
+            font-size: 24px;
+            color: #f0db4f;
+        }
+    
+        .nav ul {
+            list-style: none;
+            padding: 0;
+        }
+    
+        .nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+    
+        .nav a {
+            color: #f0db4f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+    
+        .nav a:hover {
+            background-color: #f0db4f;
+            color: #333;
+            padding: 8px;
+            border-radius: 5px;
+        }
+    
+        .userinfo-section {
+            background-color: #021120;
+            padding: 40px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-align: center;
+        }
+    
+        .profile-pic img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            display: block;
+            border: 3px solid #fff;
+        }
+    
+        .bio-section p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #e9e5f4; /* Different color for bio */
+        }
+    
+        .btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            border: none;
+            color: #fff;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+    
+        .btn:hover {
+            background-color: #218838;
+        }
+    
+        .form-control {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ffffff33;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+    
+        .form-control:disabled {
+            background-color: #2a5298;
+            cursor: not-allowed;
+        }
+    
+        .user-info .row {
+            margin-bottom: 20px;
+        }
+    
+        .footer {
+            background: #2a5298;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+    
+        .social-icon {
+            color: #f0db4f;
+            font-size: 20px;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+    
+        .social-icon:hover {
+            color: #ffb84d;
+        }
+    
+        .credit {
+            font-size: 14px;
+            color: #bbb;
+        }
+    
+        .recent-activity ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+        }
+    
+        .recent-activity li {
+            margin-bottom: 10px;
+        }
+    
+        /* Styling for the edit button */
+        .edit-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+    
+        .edit-btn:hover {
+            background-color: #0056b3;
+        }
+    
+        /* Bio Section Specific Styling */
+        .bio-section {
+            padding: 20px;
+            background-color: #2a5298;
+            border-radius: 10px;
+        }
+    
+        /* Edit button style for inputs */
+        .form-control-wrapper {
+            position: relative;
+        }
+    
+        /* Spacing between form fields */
+        .form-control-wrapper + .form-control-wrapper {
+            margin-top: 20px;
+        }
+    </style>
+    
+</head>
+<body>
+     <!-- Overlay for dimming the background -->
+     <div id="popup-overlay" class="popup-overlay"></div>
+
+     <!-- Popup -->
+     <div id="login-popup" class="popup">
+         <!-- SVG Error Icon -->
+         <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+             <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2" fill="none"/>
+             <line x1="9" y1="9" x2="15" y2="15" stroke="black" stroke-width="2"/>
+             <line x1="15" y1="9" x2="9" y2="15" stroke="black" stroke-width="2"/>
+         </svg>
+         <p class="message">You are not logged in. Please log in first. If you don't have an account, <a href="signup.html">sign up</a>.</p>
+         <button id="close-popup" class="btn btn-primary">OK</button>
+     </div>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Explore J&K</h1>
+            <nav class="nav">
+                <ul><li><a href="index.html" >Home</a></li>
+                    <li><a href="about.html" >About</a></li>
+                    <li><a href="places.html" >Places to Visit</a></li>
+                    <li><a href="contact.html" >Contact</a></li>
+                    <li><a href="signup.html" >Sign up</a></li>
+                    <li><a href="feedback.html" >Feedback</a></li>
+                    <li><a href="food.html" >Food and culture</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="nav-item" style="text-align: right; margin-right: 40px;">
+            <!-- Wishlist Button -->
+             <a class="nav-link" href="userinfo.html"  style="margin-right: 80px ; text-align: right; background-color: #FFE4E1; padding: 8px 15px; border-radius: 5px; text-decoration: none; color: #333; transition: all 0.3s ease; display: inline-block; margin: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.backgroundColor='#FFB6C1'" onmouseout="this.style.backgroundColor='#FFE4E1'">User Info</a>
+  
+        </div>  
+    </header>
+
+    <section class="userinfo-section">
+        <div class="container">
+            <h2 class="section-title">User Profile</h2>
+
+            <!-- Profile Picture -->
+            <div class="profile-pic">
+                <img id="profile-pic" src="" alt="Profile Picture" class="img-fluid rounded-circle">
+            </div>
+
+            <!-- About/Bio Section -->
+            <div class="bio-section">
+                <p id="bio">Your bio will appear here.</p>
+                <button id="edit-bio" class="btn">Edit</button>
+            </div>
+
+            <hr>
+
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Name:</label>
+                        <input type="text" id="name" class="form-control" disabled>
+                        <button id="edit-name" class="btn">Edit</button>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Email:</label>
+                        <input type="email" id="email" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Password:</label>
+                        <input type="password" id="password" class="form-control" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Favorite Book:</label>
+                        <input type="text" id="favorite-book" class="form-control" disabled>
+                        <button id="edit-fav-book" class="btn">Edit</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Hobbies:</label>
+                        <input type="text" id="hobbies" class="form-control" disabled>
+                        <button id="edit-hobbies" class="btn">Edit</button>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Favorite Places:</label>
+                        <input type="text" id="favorite-places" class="form-control" disabled>
+                        <button id="edit-places" class="btn">Edit</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Age:</label>
+                        <input type="number" id="age" class="form-control" disabled>
+                        <button id="edit-age" class="btn">Edit</button>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Gender:</label>
+                        <select id="gender" class="form-control" disabled>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <button id="edit-gender" class="btn">Edit</button>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Recent Activity Section -->
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <ul id="activity-list">
+                    <li>Visited Leh - 2024-11-15</li>
+                    <li>Posted a review on Dal Lake - 2024-11-10</li>
+                    <li>Checked out a new food place - 2024-11-05</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Contact us at <a href="mailto:info@explorejk.com" style="color:#f0db4f;">info@explorejk.com</a></p>
+        <p>Follow us on:</p>
+        <div class="social-links">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">Twitter</a>
+            <a href="#" class="social-icon">Instagram</a>
+        </div>
+     
+    </footer>
+     <!-- Check login status -->
+     <script>
+        // Check if the user is logged in
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        const content = document.querySelector('.main-content1'); // Content to blur
+
+        if (!loggedInUser) {
+            // Apply blur effect on the content and show the popup
+            content.classList.add('blurred');
+            const popup = document.getElementById('login-popup');
+            const overlay = document.getElementById('popup-overlay');
+            popup.classList.add('show');
+            overlay.classList.add('show');
+
+            // Redirect to login page after 3 seconds
+            setTimeout(() => {
+                window.location.href = 'signin.html'; // Redirect to sign-in page
+            }, 6000); // 3 seconds delay
+        }
+
+        // Close the popup and redirect immediately when the button is clicked
+        document.getElementById('close-popup').addEventListener('click', function() {
+            const popup = document.getElementById('login-popup');
+            const overlay = document.getElementById('popup-overlay');
+            popup.classList.remove('show');
+            overlay.classList.remove('show');
+            content.classList.remove('blurred'); // Remove blur effect
+
+            // Redirect to the login page immediately after closing the popup
+            window.location.href = 'signin.html'; // Redirect to sign-in page
+        });
+    </script>
+    <script>
+        // Fetch user data from localStorage
+        const userData = JSON.parse(localStorage.getItem('userData')) || {};
+    
+        function capitalizeFirstLetter(str) {
+            return str
+                .split('-') // Split by hyphens for slug format
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize each word
+                .join(' '); // Join back with spaces
+        }
+    
+        // Display the user data
+        document.getElementById('profile-pic').src = userData.profilePicUrl || 'images/default-profile.jpg';
+        document.getElementById('bio').textContent = userData.bio || 'This is your bio. Click Edit to update it.';
+        document.getElementById('name').value = userData.name || '';
+        document.getElementById('email').value = userData.email || '';
+        document.getElementById('favorite-book').value = capitalizeFirstLetter(userData.favoriteBook) || '';
+        document.getElementById('hobbies').value = userData.hobbies || '';
+        document.getElementById('favorite-places').value = userData.favoritePlaces || '';
+        document.getElementById('age').value = userData.age || '';
+        document.getElementById('gender').value = userData.gender || 'male';
+    
+        // Edit button functionality
+        document.getElementById('edit-name').addEventListener('click', () => toggleEdit('name'));
+        document.getElementById('edit-bio').addEventListener('click', () => toggleEdit('bio'));
+        document.getElementById('edit-fav-book').addEventListener('click', () => toggleEdit('favorite-book'));
+        document.getElementById('edit-hobbies').addEventListener('click', () => toggleEdit('hobbies'));
+        document.getElementById('edit-places').addEventListener('click', () => toggleEdit('favorite-places'));
+        document.getElementById('edit-age').addEventListener('click', () => toggleEdit('age'));
+        document.getElementById('edit-gender').addEventListener('click', () => toggleEdit('gender'));
+    
+        // Function to toggle edit state
+        function toggleEdit(fieldId) {
+            const inputField = document.getElementById(fieldId);
+            const button = document.getElementById(`edit-${fieldId}`);
+            const isEditable = inputField.disabled || inputField.contentEditable === 'false';
+    
+            if (fieldId === 'bio') {
+                // Handle bio separately since it uses contentEditable
+                if (isEditable) {
+                    inputField.contentEditable = 'true';
+                    button.textContent = 'Save';
+                } else {
+                    inputField.contentEditable = 'false';
+                    button.textContent = 'Edit';
+                    saveChanges(fieldId);
+                }
+            } else {
+                // Handle other fields
+                inputField.disabled = !isEditable;
+                button.textContent = isEditable ? 'Save' : 'Edit';
+    
+                if (!isEditable) {
+                    saveChanges(fieldId);
+                }
+            }
+        }
+    
+        // Save changes to localStorage
+        function saveChanges(fieldId) {
+            const inputField = document.getElementById(fieldId);
+            if (inputField && inputField.value !== undefined) {
+                userData[fieldId] = fieldId === 'bio' ? inputField.textContent : inputField.value;
+                localStorage.setItem('userData', JSON.stringify(userData));
+            }
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,159 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Header Styling */
+.itinerary-header {
+    background: linear-gradient(to right, #f8819f, #983b79, #6a1954);
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+/* Itinerary Card Styling */
+.itinerary-card {
+    background-color: #f6806e;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.itinerary-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient background */
+.itinerary-section {
+    background: linear-gradient(to right, #ff9a9e, #fad0c4, #fad0c4);
+    padding: 50px 0;
+}
+
+/* Carousel styling */
+.carousel-item img {
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Button Styling */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #333;
+    border-radius: 50%;
+    padding: 10px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-4 {
+    display: flex;
+    align-items: stretch;
+}
+/* Header Styling */
+.itinerary-header {
+    background: linear-gradient(to right, #f8819f, #983b79, #6a1954);
+    background-image: url(food.jpg);
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+}
+
+/* General Itinerary Section */
+.itinerary-section {
+    background-color: #f9f9f9;
+   
+    padding: 60px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.itinerary-details {
+    margin-top: 40px;
+}
+
+/* Carousel Styling */
+.carousel {
+    margin-bottom: 30px;  /* Spacing between carousel and itinerary */
+}
+
+/* Responsive Carousel */
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+    .carousel-inner img {
+        height: 400px;  /* Adjusted height for larger screens */
+    }
+}
+
+@media (max-width: 767px) {
+    .carousel-inner img {
+        height: 300px;  /* Adjusted height for smaller screens */
+    }
+}
+
+.carousel-control-prev, 
+.carousel-control-next {
+    filter: invert(1); /* White controls for better visibility */
+}
+
+/* Itinerary Cards */
+.itinerary-card {
+    background: rgb(223, 133, 92);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+}
+
+.itinerary-card:hover {
+    transform: translateY(-5px); /* Hover effect */
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Itinerary Heading */
+.itinerary-card h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Itinerary Paragraph */
+.itinerary-card p {
+    font-size: 1.1em;
+    color: #1e1111;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .itinerary-card {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .itinerary-card {
+        padding: 15px;
+    }
+}
+
+/* Extra spacing for better layout */
+.carousel-container {
+    padding-bottom: 30px;
+}
+

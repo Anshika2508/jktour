@@ -1,0 +1,219 @@
+body {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Added this */
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+/* Header Styling */
+.header {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent header */
+    color: #fff;
+    padding: 20px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Adding a shadow to the header */
+    border-bottom: 2px solid #ffffff33; /* Border with slight transparency */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+.header .container {
+    width: 100%;
+    max-width: 1200px; /* Restrict width for better layout on larger screens */
+    margin: 0 auto; /* Center the container */
+    display: flex;
+    justify-content: space-between; /* Space out logo and nav items */
+    align-items: center; /* Vertically align logo and nav items */
+}
+
+.header .logo {
+    font-size: 28px;
+    font-weight: 600;
+    color: #f0db4f; /* Highlight logo with a different color */
+    flex-shrink: 0; /* Prevent the logo from shrinking */
+    text-align: left; /* Ensure the logo aligns left */
+}
+
+.nav {
+    text-align: right; /* Align nav items to the right */
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Add space between nav items */
+    margin: 0;
+    padding: 0;
+}
+
+.nav a {
+    color: #f0db4f;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.nav a:hover {
+    background: #f0db4f;
+    color: #333;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .header .container {
+        flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    }
+
+    .nav ul {
+        justify-content: flex-end; /* Keep nav buttons right-aligned */
+    }
+}
+
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        align-items: center; /* Center items on small screens */
+    }
+
+    .nav ul {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .nav {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
+
+.login-container {
+    background: #1f1f1f;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
+    width: 350px;
+    text-align: center;
+}
+
+.login-title {
+    color: #f2f2f2;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.form-control::placeholder {
+    color: #999;
+}
+
+.login-btn {
+    width: 100%;
+    background-color: #ff4b2b;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #ff3a1a;
+}
+
+.login-options {
+    margin-top: 15px;
+}
+
+.signup-link, .forgot-link {
+    color: #ff4b2b;
+    text-decoration: none;
+}
+
+.signup-link:hover, .forgot-link:hover {
+    text-decoration: underline;
+}
+/* Full-Width Footer Styling */
+.footer {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #222; /* Dark background */
+    color: #fff; /* White text */
+    padding: 20px 0;
+    text-align: center; /* Center-align all elements */
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Contact Info Styling */
+.footer p {
+    margin: 5px 0; /* Small spacing between lines */
+    font-size: 14px;
+    color: #ddd; /* Slightly lighter text */
+}
+
+.footer a {
+    color: #f0db4f; /* Highlight links */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #ffd700; /* Lighter yellow on hover */
+}
+
+/* Social Media Links */
+.footer .social-links {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center; /* Center-align social icons */
+    gap: 20px; /* Space between icons */
+}
+
+.footer .social-icon {
+    font-size: 20px; /* Size of Font Awesome icons */
+    color: #f0db4f; /* Default color for icons */
+    transition: transform 0.3s, color 0.3s;
+}
+
+.footer .social-icon:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+    color: #ffd700; /* Change color on hover */
+}
+
+/* Copyright Text Styling */
+.footer .credit {
+    margin-top: 0px;
+    font-size: 12px;
+    color: #aaa; /* Dimmed color for copyright text */
+}
+
+
+
+#profile-pic {
+    width: 95%; /* Set width to 100% */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners */
+    border: 2px solid #0e0101; /* Light border */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+    background-color: #0e0c01c6; /* Change color of file upload button */
+}
+
+#profile-pic:hover {
+    border-color: #f0db4f; /* Change border color on hover */
+}  

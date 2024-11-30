@@ -1,0 +1,102 @@
+/* Basic resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+    color: #333;
+    line-height: 1.6;
+    padding: 0 20px;
+  }
+  
+  /* Header */
+  .district-header {
+    background: #00838f;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .district-header h1 {
+    font-size: 3em;
+  }
+  
+  .district-header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+  
+  /* Overview */
+  .district-overview {
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .district-overview h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  /* Attractions */
+  .district-attractions {
+    margin: 20px 0;
+  }
+  
+  .attractions-gallery {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .attraction {
+    text-align: center;
+    width: 45%;
+  }
+  
+  .attraction img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .attraction h3 {
+    margin-top: 10px;
+  }
+  
+  /* Travel Info */
+  .district-travel-info ul {
+    list-style-type: none;
+    padding: 10px;
+  }
+  
+  #map-container {
+    margin-top: 20px;
+  }
+  
+  /* Accommodation */
+  .accommodation-gallery {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .hotel {
+    width: 45%;
+    text-align: center;
+  }
+  
+  .hotel img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Footer */
+  footer {
+    background: #006064;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  

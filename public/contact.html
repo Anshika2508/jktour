@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <meta name="description" content="Contact Explore J&K for your queries about visiting Jammu & Kashmir. We're here to help!">
+    <meta name="keywords" content="Explore J&K, contact, tourism, Jammu and Kashmir">
+    <link rel="stylesheet" href="css/form.css">
+    <!-- Include font awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Style for the Contact Form */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid #ffffff33;
+        }
+
+        .header .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            font-size: 28px;
+            font-weight: 600;
+            color: #f0db4f;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav a {
+            color: #f0db4f;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .nav a:hover {
+            background: #f0db4f;
+            color: #333;
+        }
+
+        .contact {
+            margin: 50px 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: #6e8efb;
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #5b7fd6;
+        }
+
+        .contact-card {
+            margin-top: 30px;
+            background-color: rgba(2, 9, 104, 0.626);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #fff;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        /* Toaster Styles */
+        .toaster {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            z-index: 1000;
+            opacity: 1;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .toaster.green {
+            background-color: #28a745;
+        }
+
+        .toaster.red {
+            background-color: #dc3545;
+        }
+
+        /* Spinner */
+        #loading-spinner {
+            display: none;
+            font-size: 16px;
+            color: rgb(48, 15, 234);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Explore J&K</h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="places.html">Places to Visit</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need more information, please feel free to reach out to us:</p>
+            
+            <!-- Contact Form -->
+            <div id="form-section">
+                <img src="images/contact.png" id="contact-image" alt="Contact Us Illustration" class="contact-image">   
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        
+                        <input type="text" id="user-name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                       
+                        <input type="email" id="user-email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        
+                        <input type="tel" id="user-phone" class="form-control" placeholder="Your Phone Number" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group">
+                        
+                        <textarea id="user-message" class="form-control" placeholder="Your Purpose" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                    <div id="loading-spinner">Sending...</div>
+                </form>
+            </div>
+
+            <!-- Contact Details Card -->
+            <div class="contact-card">
+                <h3>Our Contact Details:</h3>
+                <p>Email: info@explorejk.com</p>
+                <p>Phone: +91 1234567890</p>
+                <p>Follow us on our social media channels:</p>
+                
+                <!-- Social Media Icons -->
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Explore J&K. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Include EmailJS Script -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your user ID
+        (function () {
+            emailjs.init('zZmQ1x19Gm4eWcWI2');
+        })();
+
+        // Handle the form submission
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const userName = document.getElementById('user-name').value;
+            const userEmail = document.getElementById('user-email').value;
+            const userPhone = document.getElementById('user-phone').value;
+            const userMessage = document.getElementById('user-message').value;
+
+            // Show spinner
+            document.getElementById('loading-spinner').style.display = 'block';
+
+            // Send the email using EmailJS
+            emailjs.send('service_mlzk1z9', 'template_4o7nuvb', {
+                name: userName,
+                email: userEmail,
+                purpose: userMessage,
+                tel: userPhone
+            }).then(function (response) {
+                document.getElementById('loading-spinner').style.display = 'none';
+                showToaster('Message sent successfully!', 'green');
+                document.getElementById('contact-form').reset();
+            }).catch(function (error) {
+                document.getElementById('loading-spinner').style.display = 'none';
+                showToaster('Failed to send message.', 'red');
+            });
+        });
+
+        // Function to show toaster notification
+        function showToaster(message, type) {
+            const toaster = document.createElement('div');
+            toaster.classList.add('toaster', type);
+            toaster.innerText = message;
+            document.body.appendChild(toaster);
+
+            setTimeout(() => {
+                toaster.style.opacity = '0';
+                toaster.style.transform = 'translateY(-30px)';
+            }, 3000);
+
+            setTimeout(() => {
+                document.body.removeChild(toaster);
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

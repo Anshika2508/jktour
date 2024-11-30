@@ -1,0 +1,80 @@
+/* General Styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(45deg, #1e3c72, #2a5298, #6dd5ed);
+    color: white;
+    height: 100%;
+}
+
+.header {
+    text-align: center;
+    padding: 50px 20px;
+    background: url('rajouri-background.jpg') no-repeat center center/cover;
+    color: #fff;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+.content-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 40px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.district-card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    overflow: hidden;
+    width: 30%;
+    margin: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.district-card:hover {
+    transform: translateY(-10px);
+}
+
+.food-img, .culture-img {
+    width: 100%;
+    height: auto;
+    border-bottom: 4px solid #fff;
+}
+
+.district-card h2 {
+    color: #ffcb74;
+    font-size: 1.8rem;
+    margin-top: 10px;
+}
+
+.district-card p {
+    padding: 15px;
+    font-size: 1rem;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    text-align: center;
+    color: #ffcb74;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
