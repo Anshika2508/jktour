@@ -1,3 +1,4 @@
+// Add event listeners for form inputs
 document.getElementById('check-email-btn').addEventListener('click', function () {
     const email = document.getElementById('email').value.trim();
     const userData = JSON.parse(localStorage.getItem('userData'));
@@ -36,30 +37,44 @@ document.getElementById('update-password-btn').addEventListener('click', functio
     }
 });
 
+// Real-time validation for password fields
+document.getElementById('new-password').addEventListener('input', validatePasswords);
+document.getElementById('confirm-password').addEventListener('input', validatePasswords);
+
+// Back button resets the page
 document.getElementById('back-btn').addEventListener('click', resetPage);
 
+// Toggle between "I know my password" and "I don't know my password"
 document.getElementById('know-password').addEventListener('change', function () {
     const isChecked = this.checked;
     toggleVisibility('old-password', isChecked);
     toggleVisibility('favorite-book', !isChecked);
 });
 
-document.getElementById('new-password').addEventListener('input', validatePasswords);
-document.getElementById('confirm-password').addEventListener('input', validatePasswords);
-
+// Validate passwords and manage button state
 function validatePasswords() {
-    const newPassword = document.getElementById('new-password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
+    const newPassword = document.getElementById('new-password').value.trim();
+    const confirmPassword = document.getElementById('confirm-password').value.trim();
+
+    if (!newPassword || !confirmPassword) {
+        disableUpdateButton(true);
+        return;
+    }
 
     if (newPassword !== confirmPassword) {
         showToast('Passwords do not match.', 'error');
         disableUpdateButton(true);
+        return;
+    }
+
+    if (validatePassword(newPassword)) {
+        disableUpdateButton(false); // Enable the button when all validations pass
     } else {
-        showToast('Passwords matched.', 'success');
-        disableUpdateButton(!validatePassword(newPassword));
+        disableUpdateButton(true);
     }
 }
 
+// Function to validate password complexity
 function validatePassword(password) {
     const complexityRules = [
         { test: password.length >= 8, message: 'Password must be at least 8 characters long.' },
@@ -69,36 +84,27 @@ function validatePassword(password) {
         { test: /[!@#$%^&*(),.?":{}|<>]/.test(password), message: 'Password must contain at least one special character.' },
     ];
 
-    for (const rule of complexityRules) {
-        if (!rule.test) {
-            showToast(rule.message, 'error');
-            return false;
-        }
+    const errors = complexityRules.filter(rule => !rule.test);
+
+    if (errors.length > 0) {
+        errors.forEach(error => showToast(error.message, 'error'));
+        return false;
     }
 
     return true;
 }
 
+// Update password in localStorage
 function updatePassword(userData, newPassword) {
     userData.password = newPassword;
     localStorage.setItem('userData', JSON.stringify(userData));
-    const clickSound = document.getElementById('click-sound');
-    clickSound.play();
+    document.getElementById('click-sound').play();
     showToast('Password updated successfully!', 'success');
     resetPage();
-    document.getElementById('message').innerHTML = 'Password has been updated, you will be redirected to sign in shortly';
-    setTimeout(() => {
-       
-    }, 6000); // 3 seconds delay
-    
-    showToast('Password has been updated, you will be redirected to sign in shortly', 'success');
-
-    setTimeout(() => {
-        window.location.href = 'signin.html'; // Redirect to sign-in page
-    }, 6000); // 3 seconds delay
-    
+    setTimeout(() => window.location.href = 'signin.html', 6000); // Redirect to sign-in page after 6 seconds
 }
 
+// Show profile information
 function showProfileInfo(userData) {
     const profilePic = userData.profilePicUrl || 'default-profile-pic.png';
     document.getElementById('profile-pic').src = profilePic;
@@ -106,15 +112,18 @@ function showProfileInfo(userData) {
     toggleVisibility('profile-info', true);
 }
 
+// Manage visibility of different sections
 function showPasswordUpdateSection() {
     toggleVisibility('user-check', false);
     toggleVisibility('password-update', true);
 }
 
+// Convert string to slug
 function convertToSlug(str) {
     return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
+// Display toast notifications
 function showToast(message, type = 'info') {
     const toastContainer = document.getElementById('toast-container');
     const toast = document.createElement('div');
@@ -124,6 +133,7 @@ function showToast(message, type = 'info') {
     setTimeout(() => toast.remove(), 3000);
 }
 
+// Reset the page
 function resetPage() {
     document.getElementById('email').value = '';
     document.getElementById('old-password').value = '';
@@ -133,12 +143,18 @@ function resetPage() {
     toggleVisibility('user-check', true);
     toggleVisibility('password-update', false);
     toggleVisibility('profile-info', false);
+    disableUpdateButton(true); // Reset button state
 }
 
+// Toggle visibility of elements
 function toggleVisibility(elementId, isVisible) {
     document.getElementById(elementId).style.display = isVisible ? 'block' : 'none';
 }
 
+// Enable or disable the update button and change its color
 function disableUpdateButton(isDisabled) {
-    document.getElementById('update-password-btn').disabled = isDisabled;
+    const button = document.getElementById('update-password-btn');
+    button.disabled = isDisabled;
+    button.style.backgroundColor = isDisabled ? '#d3d3d3' : '#ff4b2b'; // Gray when disabled, red when enabled
+    button.style.cursor = isDisabled ? 'not-allowed' : 'pointer';
 }

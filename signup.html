@@ -42,10 +42,15 @@
                 <div class="form-group">
                     <input type="text" class="form-control" id="favorite-book" placeholder="Favorite Book">
                 </div>
-                <div class="form-group">
-                    <label for="profile-pic" class="form-label">Upload Profile Picture:</label>
-                    <input type="file" class="form-control" id="profile-pic" accept="image/*">
+                <div class="file-upload-container">
+                    <label for="profile-pic" class="file-upload-label">
+                        <i class="fas fa-upload"></i> Upload Profile Picture
+                    </label>
+                    <input type="file" id="profile-pic" accept="image/*">
+                    <div id="file-info" class="file-upload-info">No file chosen.</div>
+                    <img id="file-preview" class="file-preview" alt="Profile Preview">
                 </div>
+                
                 <button type="submit" class="btn btn-success">Sign Up</button>
             </form>
             <p class="form-options">Already have an account? <a href="signin.html" class="link">Sign In here</a></p>
