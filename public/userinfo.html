@@ -6,6 +6,7 @@
     <title>User Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* General Styles */
         body {
             background-color: #031322;
             font-family: 'Roboto', sans-serif;
@@ -18,9 +19,58 @@
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
         }
+         .discover-highlights {
+    background-color: #021120;
+    padding: 40px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #ffffff8a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(226, 22, 22, 0.2);
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.card h4 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #0b0b0b;
+}
+
+.card p {
+    font-size: 16px;
+    color: #080808;
+}
+
     
-        .header {
+        /* Header Styles */
+       .header {
             padding: 20px 0;
             background-color: #1a2b3c;
             color: #fff;
@@ -55,196 +105,146 @@
             border-radius: 5px;
         }
     
+    
+        /* Profile Section */
         .userinfo-section {
-            background-color: #021120;
-            padding: 40px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 30px 0;
         }
     
-        .section-title {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #fff;
+        .profile-pic {
+            background: #1f1f1f;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+            padding: 20px;
             text-align: center;
+            margin-bottom: 20px;
         }
     
         .profile-pic img {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            width: 180px;
-            height: 180px;
-            margin: 0 auto;
-            display: block;
-            border: 3px solid #fff;
+            border: 3px solid #ff9800;
+            margin-bottom: 15px;
         }
-
-        .bio-section {
-            background-color: #07000b;
+    
+        .profile-pic h2 {
+            font-size: 24px;
             margin-bottom: 10px;
+            color: #ff9800;
+        }
+    
+        .profile-pic p {
+            font-size: 16px;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+    
+        /* Bio Section */
+        .bio-section {
+            margin-top: 5px;
+            background: #1f1f1f;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
         }
     
         .bio-section p {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #e7e7e7;
+            font-size: 16px;
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin: 0;
         }
-
-        .user-info .row {
-            margin-bottom: 20px;
+    
+        /* User Info Table */
+        .user-table-card {
+            background: #1f1f1f;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+            padding: 20px;
         }
-
+    
         .user-table {
             width: 100%;
-            margin-top: 30px;
             border-collapse: collapse;
+            margin-top: 20px;
         }
-
+    
         .user-table th, .user-table td {
-            padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            padding: 12px;
+            border-bottom: 1px solid #333;
         }
-
-        .footer {
-            background: #020d20;
-            padding: 20px;
-            text-align: center;
-            color: #fff;
-        }
-
-        .social-icon {
-            color: #f0db4f;
-            font-size: 20px;
-            margin-right: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            color: #ffb84d;
-        }
-
-        .credit {
+    
+        .user-table th {
+            background-color: #333;
+            color: #ff9800;
             font-size: 14px;
-            color: #bbb;
         }
-
-        .recent-activity ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 16px;
+    
+        .user-table td {
+            font-size: 14px;
+            color: #b0b0b0;
         }
-
-        .recent-activity li {
-            margin-bottom: 10px;
-        }
-         /* Popup styling */
-         .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            z-index: 1000;
-            width: 400px;
-            font-family: 'Arial', sans-serif;
-            font-size: 18px;
-            transition: opacity 0.3s ease;
-        }
-        .popup.show {
-            display: block;
-            opacity: 1;
-        }
-        .popup .message {
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .popup .btn {
-            padding: 12px 25px;
-            font-size: 16px;
-            background-color: #ff6b6b; /* Error color */
-            color: #fff;
-            border: none;
-            border-radius: 8px;
+    
+        .user-table tr:hover {
+            background-color: #292929;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .popup .btn:hover {
-            background-color: #e04e4e;
+    
+        /* Footer Styles */
+        .footer {
+            background: #1f1f1f;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 20px 0;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
         }
-        .popup .btn:focus {
-            outline: none;
+    
+        .footer a {
+            color: #ff9800;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
-
-        /* SVG Icon Styling */
-        .popup .error-icon {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 20px;
-            fill: #ff6b6b;
+    
+        .footer a:hover {
+            color: #fff;
         }
-
-        /* Dim and blur background effect */
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-        .popup-overlay.show {
-            display: block;
-        }
-
-        /* Blur effect for content */
-        .blurred {
-            filter: blur(5px);
-            pointer-events: none; /* Prevent interaction with blurred content */
+    
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
         }
     </style>
+    
 </head>
 <body>
-     <!-- Overlay for dimming the background -->
-     <div id="popup-overlay" class="popup-overlay"></div>
-
-     <!-- Popup -->
-     <div id="login-popup" class="popup">
-         <!-- SVG Error Icon -->
-         <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-             <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2" fill="none"/>
-             <line x1="9" y1="9" x2="15" y2="15" stroke="black" stroke-width="2"/>
-             <line x1="15" y1="9" x2="9" y2="15" stroke="black" stroke-width="2"/>
-         </svg>
-         <p class="message">You are not logged in. Please log in first. If you don't have an account, <a href="signup.html">sign up</a>.</p>
-         <button id="close-popup" class="btn btn-primary">OK</button>
-     </div>
     <header class="header">
         <div class="container">
             <h1 class="logo">Explore J&K</h1>
             <nav class="nav">
-                <ul> <li><a href="index.html" >Home</a></li>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="about.html" target="_blank">About</a></li>
                     <li><a href="places.html" target="_blank">Places to Visit</a></li>
                     <li><a href="contact.html" target="_blank">Contact</a></li>
                     <li><a href="signup.html" target="_blank">Sign up</a></li>
                     <li><a href="feedback.html" target="_blank">Feedback</a></li>
-                    <li><a href="food.html" target="_blank">Food and culture</a></li>
+                    <li><a href="food.html" target="_blank">Food and Culture</a></li>
                 </ul>
             </nav>
         </div>
         <div class="nav-item" style="text-align: right; margin-right: 40px;">
-            <!-- Wishlist Button -->
-             <a class="nav-link" href="edituser.html" style="margin-right: 80px ; text-align: right; background-color: #FFE4E1; padding: 8px 15px; border-radius: 5px; text-decoration: none; color: #333; transition: all 0.3s ease; display: inline-block; margin: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.backgroundColor='#FFB6C1'" onmouseout="this.style.backgroundColor='#FFE4E1'">Edit Mode</a>
-  
-        </div>  
+            <!-- Edit Profile Button -->
+            <a class="nav-link" href="edituser.html" style="margin-right: 80px; text-align: right; background-color: #FFE4E1; padding: 8px 15px; border-radius: 5px; text-decoration: none; color: #333; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#FFB6C1'" onmouseout="this.style.backgroundColor='#FFE4E1'">Edit Mode</a>
+        </div>
     </header>
 
     <section class="userinfo-section">
@@ -259,12 +259,14 @@
             <!-- About/Bio Section -->
             <div class="bio-section">
                 <p id="bio">
-                    Passionate explorer with a love for discovering hidden gems and immersing in diverse cultures. Whether scaling mountain peaks, wandering vibrant city streets, or savoring local cuisines, I believe every journey tells a story worth sharing. Always seeking the road less traveled and the adventures it brings!</p>
+                    Passionate explorer with a love for discovering hidden gems and immersing in diverse cultures. Whether scaling mountain peaks, wandering vibrant city streets, or savoring local cuisines, I believe every journey tells a story worth sharing. Always seeking the road less traveled and the adventures it brings!
+                </p>
             </div>
 
             <hr>
 
             <!-- User Info Table -->
+             <div class="user-table-card">
             <h3 class="section-title">User Information</h3>
             <table id="user-info-table" class="user-table">
                 <thead>
@@ -277,18 +279,65 @@
                     <!-- Table content will be populated dynamically -->
                 </tbody>
             </table>
+        </div>
 
             <hr>
 
-            <!-- Recent Activity Section -->
-            <div class="recent-activity">
-                <h3>Recent Activity</h3>
-                <ul id="activity-list">
-                    <li>Visited Leh - 2024-11-15</li>
-                    <li>Posted a review on Dal Lake - 2024-11-10</li>
-                    <li>Checked out a new food place - 2024-11-05</li>
-                </ul>
-            </div>
+           
+            <section class="discover-highlights">
+                <div class="container">
+                    <h3 class="section-title">Discover J&K Highlights</h3>
+                    <div class="highlight-cards">
+                        <!-- Card 1 -->
+                        <div class="card">
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2l7 7h-4v7H9V9H5l7-7z" fill="#ff9800"/>
+                            </svg>
+                            <h4>Gulmarg</h4>
+                            <p>Known as the "Meadow of Flowers," a paradise for nature and adventure lovers.</p>
+                        </div>
+            
+                        <!-- Card 2 -->
+                        <div class="card">
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" fill="#03a9f4"/>
+                                <path d="M12 2v20M2 12h20" stroke="#fff" stroke-width="2" />
+                            </svg>
+                            <h4>Vaishno Devi Shrine</h4>
+                            <p>A spiritual retreat attracting millions of pilgrims each year.</p>
+                        </div>
+            
+                        <!-- Card 3 -->
+                        <div class="card">
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M4 12l4 4h8l4-4h-2l-2 2h-8l-2-2H4z" fill="#8bc34a"/>
+                            </svg>
+                            <h4>Dal Lake</h4>
+                            <p>Famous for its houseboats and mesmerizing Shikara rides.</p>
+                        </div>
+            
+                        <!-- Card 4 -->
+                        <div class="card">
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M6 18h12l-6-9z" fill="#f44336"/>
+                            </svg>
+                            <h4>Pahalgam</h4>
+                            <p>Gateway to the Amarnath Yatra and a serene mountain retreat.</p>
+                        </div>
+            
+                        <!-- Card 5 -->
+                        <div class="card">
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M3 3h18v18H3z" fill="#ffeb3b"/>
+                                <path d="M3 12h18" stroke="#000" stroke-width="2"/>
+                            </svg>
+                            <h4>Kashmiri Cuisine</h4>
+                            <p>Delight in dishes like Rogan Josh, Yakhni, and the famous Kahwa.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
         </div>
     </section>
 
@@ -300,11 +349,9 @@
             <a href="#" class="social-icon">Twitter</a>
             <a href="#" class="social-icon">Instagram</a>
         </div>
-       
     </footer>
 
     <script>
-        // Fetch user data from localStorage
         window.onload = function() {
             const userData = JSON.parse(localStorage.getItem('userData'));
 
@@ -323,48 +370,23 @@
                 const tableBody = document.getElementById('user-info-table').getElementsByTagName('tbody')[0];
 
                 for (let key in userData) {
-                    if (key !== 'profilePic' && key !== 'bio') {
+                    if (key !== 'profilePicUrl' && key !== 'bio') {
                         const row = tableBody.insertRow();
                         const cell1 = row.insertCell(0);
                         const cell2 = row.insertCell(1);
+
                         cell1.textContent = key.charAt(0).toUpperCase() + key.slice(1);
-                        cell2.textContent = userData[key];
+
+                        // Mask password field
+                        if (key.toLowerCase().includes('password')) {
+                            cell2.textContent = '******';
+                        } else {
+                            cell2.textContent = userData[key];
+                        }
                     }
                 }
             }
         };
-    </script>
-     <!-- Check login status -->
-     <script>
-        // Check if the user is logged in
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        const content = document.querySelector('.main-content1'); // Content to blur
-
-        if (!loggedInUser) {
-            // Apply blur effect on the content and show the popup
-            content.classList.add('blurred');
-            const popup = document.getElementById('login-popup');
-            const overlay = document.getElementById('popup-overlay');
-            popup.classList.add('show');
-            overlay.classList.add('show');
-
-            // Redirect to login page after 3 seconds
-            setTimeout(() => {
-                window.location.href = 'signin.html'; // Redirect to sign-in page
-            }, 6000); // 3 seconds delay
-        }
-
-        // Close the popup and redirect immediately when the button is clicked
-        document.getElementById('close-popup').addEventListener('click', function() {
-            const popup = document.getElementById('login-popup');
-            const overlay = document.getElementById('popup-overlay');
-            popup.classList.remove('show');
-            overlay.classList.remove('show');
-            content.classList.remove('blurred'); // Remove blur effect
-
-            // Redirect to the login page immediately after closing the popup
-            window.location.href = 'signin.html'; // Redirect to sign-in page
-        });
     </script>
 </body>
 </html>

@@ -62,12 +62,13 @@ function validatePasswords() {
     }
 
     if (newPassword !== confirmPassword) {
-        showToast('Passwords do not match.', 'error');
+        document.getElementById("password-match-label").style.display = "block";
         disableUpdateButton(true);
         return;
     }
 
     if (validatePassword(newPassword)) {
+        document.getElementById("password-match-label").style.display = "none";
         disableUpdateButton(false); // Enable the button when all validations pass
     } else {
         disableUpdateButton(true);
