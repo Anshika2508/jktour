@@ -78,6 +78,84 @@
             filter: blur(5px);
             pointer-events: none; /* Prevent interaction with blurred content */
         }
+        #searchInput {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+#placesCon {
+  display: none; /* Initially hidden */
+  
+  max-height: 300px;
+  overflow-y: auto;}
+  /* Thin red scrollbar */
+#placesCon::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+}
+
+#placesCon::-webkit-scrollbar-track {
+  background-color: #3b71e7; /* Background of the scrollbar track */
+}
+
+#placesCon::-webkit-scrollbar-thumb {
+  background-color: rgb(38, 0, 255); /* Red color for the scrollbar thumb */
+  border-radius: 10px; /* Optional: Round the corners of the thumb */
+}
+
+#placesCon::-webkit-scrollbar-thumb:hover {
+  background-color: darkred; /* Darker red on hover */
+}
+
+.lace-card {
+ 
+  margin: 15px 35px;
+  border-radius: 10px;
+  padding: 12px;
+  background-color: #6874bb9d;
+  text-align: left;
+  text-decoration: none; /* Remove link underline */
+  color: rgb(0, 0, 0); /* Inherit text color */
+  display: grid; /* Use grid layout */
+  grid-template-columns: 100px 1fr; /* Image on the left, text on the right */
+  grid-gap: 15px; /* Space between image and text */
+  align-items: center; /* Vertically center the content */
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transform and background color transitions */
+}
+
+.lace-card img {
+  width: 100px; /* Fixed size for image */
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover; /* Ensure the image scales correctly */
+  transition: transform 0.3s ease; /* Smooth image scaling */
+}
+
+.lace-card h3 {
+  margin: 0 0 15px;
+}
+
+.lace-card p {
+  margin-bottom:4px ;
+
+}
+
+.lace-card:hover {
+  background-color: #fdc9e09d; /* Lighter background on hover */
+  transform: scale(1.01); /* Slight scale effect to increase card size */
+  border: #0c0101;
+}
+
+.lace-card:hover img {
+  transform: scale(1.1); /* Slight zoom-in effect for the image */
+}
+
+#search-bar::placeholder {
+    color: #d13b3b; /* Choose a visible color */
+    opacity: 1; /* Ensure it's not transparent */
+}
+     
     </style>
 </head>
 <body class="places-page">
@@ -120,11 +198,14 @@
         <!-- Search bar section -->
         <section class="search-section">
             <div class="search-container">
-                <input type="text" id="searchBar" placeholder="Search for a place...">
+                <input type="text" id="searchInput" placeholder="Search for a place...">
                 <button id="searchBtn">
-                    <img src="images/search-icon.png" alt="Search Icon">
+                   
                 </button>
             </div>
+            <div id="placesCon">
+                <!-- Place cards will be dynamically injected here -->
+              </div>
         </section>
 
         <!-- Places Section -->
@@ -186,6 +267,89 @@
             // Redirect to the login page immediately after closing the popup
             window.location.href = 'signin.html'; // Redirect to sign-in page
         });
+        const placesCon = document.getElementById('placesCon');
+const searchInput = document.getElementById('searchInput');
+let hideTimeout;
+
+// Function to render the places
+function renderPlaces() {
+    console.log("places are rendered");
+    placesCon.innerHTML = ''; // Clear previous content
+    places.forEach((place) => {
+        const placeCard = document.createElement('a');
+        placeCard.className = 'lace-card-content';
+        placeCard.href = place.link; // Link to the specific page
+        placeCard.target = '_blank'; // Open link in a new tab
+        placeCard.innerHTML = `
+      
+  <div class="lace-card">
+    <img src="${place.image}" alt="${place.name}" class="lace-card-img">
+    <div class="lace-card-text">
+      <h3 class="lace-card-title">${place.name}</h3>
+      <p class="lace-card-description">${place.description}</p>
+      <a class="lace-card-link" href="#">Learn More</a>
+    </div>
+  </div>
+
+        `;
+        placesCon.appendChild(placeCard);
+    });
+}
+
+
+// Function to filter places based on input
+function filterPlaces() {
+    const filter = searchInput.value.toUpperCase();
+    const placeCards = placesCon.getElementsByClassName('lace-card');
+    let visible = false;
+
+    for (let i = 0; i < placeCards.length; i++) {
+        const title = placeCards[i].getElementsByTagName('h3')[0];
+        const textValue = title.textContent || title.innerText;
+        
+        if (textValue.toUpperCase().indexOf(filter) > -1) {
+            placeCards[i].style.display = "";
+            visible = true;
+        } else {
+            placeCards[i].style.display = "none";
+        }
+    }
+
+    // Show results only if matches are found
+    placesCon.style.display = visible ? 'block' : 'none';
+}
+
+// Function to show places when the search bar is clicked
+function showPlaces() {
+    clearTimeout(hideTimeout); // Clear any existing timeout
+    placesCon.style.display = 'block'; // Show the results
+}
+
+// Function to hide places after a delay or immediately
+function hidePlaces(immediate = false) {
+    clearTimeout(hideTimeout); // Clear any existing timeout
+    if (immediate) {
+        placesCon.style.display = 'none'; // Hide immediately
+    } else {
+        hideTimeout = setTimeout(() => {
+            placesCon.style.display = 'none'; // Hide after 6 seconds
+        }, 6000);
+    }
+}
+
+// Event listeners
+searchInput.addEventListener('focus', showPlaces); // Show when the search bar gains focus
+searchInput.addEventListener('keyup', filterPlaces); // Filter on typing
+document.addEventListener('click', (event) => {
+    if (!placesCon.contains(event.target) && event.target !== searchInput) {
+        hidePlaces(true); // Hide immediately if clicked outside
+    }
+});
+placesCon.addEventListener('mouseleave', () => hidePlaces(false)); // Hide after delay on mouse leave
+placesCon.addEventListener('mouseenter', () => clearTimeout(hideTimeout)); // Prevent hiding if hovered over results
+
+// Initial render
+renderPlaces();
     </script>
 
 </body>

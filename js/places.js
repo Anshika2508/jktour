@@ -188,3 +188,4 @@ async function saveWishlistToBackend(wishlist) {
         console.error('Error saving wishlist to backend:', error);
     }
 }
+/// DOM Elements
