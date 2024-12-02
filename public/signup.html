@@ -124,6 +124,8 @@ document.getElementById('signup-form').addEventListener('submit', async function
 
     // Store user data in localStorage as a string
     localStorage.setItem('userData', JSON.stringify(userData));
+    await sendUserDataToServer({name,email,password,favoriteBook,profilePicUrl});
+
     showToast('Sign Up Successful! Redirecting to Sign In...');
 
     // Redirect to sign-in page after a delay
@@ -174,7 +176,28 @@ function showToast(message, type = 'success') {
         toaster.className = 'toaster'; // Hide toast after 3 seconds
     }, 3000);
 }
+// Function to send user data to the server (Backend API)
+async function sendUserDataToServer(userData) {
+    try {
+        const response = await fetch('http://localhost:4000/createUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userData }),
+        });
 
+        const data = await response.json();
+        if (data.success) {
+            console.log('User data saved successfully');
+        } else {
+            showToast('Failed to save user data. Please try again.', 'error');
+        }
+    } catch (error) {
+        console.error('Error sending data to server:', error);
+        showToast('An error occurred while saving data.', 'error');
+    }
+}
 </script>
 
 <style>

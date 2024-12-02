@@ -143,9 +143,48 @@ function addToWishlist(index) {
         
         // Show toaster notification
         showToaster(`${places[index].name} has been added to your wishlist!`);
+        saveWishlistToBackend(wishlist);
+
     } else {
         // Show toaster notification if it's already in the wishlist
         showToaster(`${places[index].name} is already in your wishlist.`);
     }
 }
 
+// Function to save wishlist data to the backend
+async function saveWishlistToBackend(wishlist) {
+    try {
+        // Get the logged-in user ID from localStorage
+        const userId = localStorage.getItem('loggedInUser'); // This should be the logged-in user's ID
+
+        // Check if the user is logged in
+        if (!userId) {
+            console.error('User is not logged in');
+            return;
+        }
+
+        // Map the indices to actual place details
+        const wishlistData = wishlist.map(index => places[index]);
+
+        // Send data to the server
+        const response = await fetch('http://localhost:4000/save-wishlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userId,          // Get the logged-in user's ID from localStorage
+                wishlistData,    // List of places to save
+            }),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            console.log('Wishlist saved successfully:', data.wishlist);
+        } else {
+            console.error('Failed to save wishlist:', data.message);
+        }
+    } catch (error) {
+        console.error('Error saving wishlist to backend:', error);
+    }
+}
