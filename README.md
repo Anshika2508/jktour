@@ -229,9 +229,71 @@ You can interact with the chat agent directly through the chat interface on the 
 
 4. The frontend files are static and do not require a build process since they are made using pure HTML, CSS, and JavaScript.
 
+---
+
 ## **Deployment**
 
-The project is deployed on **Vercel** and can be accessed live at [https://jktour.vercel.app/](https://jktour.vercel.app/).
+### **Backend Deployment**
+
+To deploy the backend of this project, follow the steps below:
+
+#### **Step 1: Prepare your environment**
+- Ensure you have **Node.js** and **MongoDB** installed on your server or choose a cloud platform like **MongoDB Atlas** to host your database.
+- Set up environment variables (e.g., MongoDB URI) and add them in a `.env` file.
+
+#### **Step 2: Clone the repository**
+Clone the repository and navigate to the backend directory:
+```bash
+git clone https://github.com/your-repo/jktour-backend.git
+cd jktour-backend
+```
+
+#### **Step 3: Install dependencies**
+Run the following command to install necessary dependencies:
+```bash
+npm install
+```
+
+#### **Step 4: Set up MongoDB**
+- **Local MongoDB**: Ensure MongoDB is running locally.
+- **MongoDB Atlas**: If using Atlas, create a cluster and replace the `MONGODB_URI` in the `.env` file with your Atlas URI.
+
+#### **Step 5: Start the backend**
+To start the backend server, run:
+```bash
+npm start
+```
+
+By default, the server will run on port `4000`. You can access the backend API at `http://localhost:4000`.
+
+#### **Step 6: Deploy to a Cloud Platform (Optional)**
+To deploy the backend on platforms like **Heroku**, **AWS EC2**, or **Google Cloud**, follow the respective platform's deployment guide and configure your environment variables accordingly.
+
+---
+
+### **Frontend Deployment (Vercel)**
+
+The frontend is deployed using **Vercel**. To deploy it:
+
+1. Go to the [Vercel Dashboard](https://vercel.com/dashboard).
+2. Click on **New Project** and select the repository containing your frontend code.
+3. Follow the deployment steps, and Vercel will automatically deploy your project with a unique URL.
+
+You can access the deployed version at the provided URL, for example:
+```text
+https://<your-project-name>.vercel.app/
+```
+Once deployed, Vercel will assign a unique URL, which you can find on your [Vercel Dashboard](https://vercel.com/dashboard).
+
+---
+
+### **Deployed Version URL**
+
+You can access the live version of the deployed website at this URL:
+
+```text
+https://jktour.vercel.app/
+```
 
 ## **Contributing**
 
