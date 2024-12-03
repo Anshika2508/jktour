@@ -10,6 +10,8 @@ Welcome to **JKTour**, a web application for managing user data and saving wishl
 - **Wishlist Management**: Users can save and update their wishlist of places they wish to visit.
 - **View User Data**: Admin or other users can view the data of all users or search for specific users by email.
 - **Freshchat Integration**: An AI-powered chat agent integrated with Freshchat for real-time assistance, providing an intelligent response to user queries about the platform, travel tips, or general assistance.
+- **Search Bar**: Easily search for places or users by name, email, or location within the platform.
+- **Restricted Sign-in**: The sign-in functionality has restricted access to ensure only authenticated users can log in to the platform, providing additional security.
 
 
 ## **Tech Stack**
