@@ -12,6 +12,7 @@ Welcome to **JKTour**, a web application for managing user data and saving wishl
 - **Freshchat Integration**: An AI-powered chat agent integrated with Freshchat for real-time assistance, providing an intelligent response to user queries about the platform, travel tips, or general assistance.
 - **Search Bar**: Easily search for places or users by name, email, or location within the platform.
 - **Restricted Sign-in**: The sign-in functionality has restricted access to ensure only authenticated users can log in to the platform, providing additional security.
+- **Image Hosting with ImgHippo API**: All user-uploaded images, such as profile pictures, are hosted using the ImgHippo API, a free but reliable and efficient image hosting solution.
 
 
 ## **Tech Stack**
@@ -22,6 +23,7 @@ Welcome to **JKTour**, a web application for managing user data and saving wishl
 - **Authentication**: Bcrypt.js for password hashing
 - **Others**: CORS for cross-origin resource sharing
 - **Chatbot Integration**: Freshchat API (for AI-powered chat support)
+- **Image Hosting**: ImgHippo API (for efficient image hosting)
 
 ## **API Endpoints**
 
